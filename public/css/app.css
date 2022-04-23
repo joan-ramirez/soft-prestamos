@@ -1,0 +1,289 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+html {
+    box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+:root {
+    --color-principal: #130f40;
+    --color-negro: black;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Poppins", sans-serif;
+    background-color: rgb(246, 246, 246);
+}
+
+.contenedor {
+    background-color: var(--color-principal);
+    height: 350px;
+    display: grid;
+    grid-template-rows: auto auto 1fr 1fr;
+}
+
+.contenedor_size {
+    max-width: 1000px;
+    width: 95%;
+    margin: auto;
+}
+
+/*HEADER*/
+.contenedor header .logo {
+    color: white;
+    font-size: 25px;
+}
+
+.contenedor header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.contenedor header ul {
+    display: flex;
+    gap: 25px;
+    justify-content: right;
+}
+
+.contenedor header ul li {
+    list-style: none;
+}
+.contenedor header ul li a {
+    color: white;
+    text-decoration: none;
+}
+.contenedor header ul .icono_user_perfil svg {
+    height: 25px;
+    color: white;
+    cursor: pointer;
+}
+
+/*NOTIFICACIONES*/
+.contenedor header ul .icono_notificacion svg {
+    height: 25px;
+    color: white;
+    cursor: pointer;
+}
+
+.contenedor header ul .notificaciones {
+    position: absolute;
+    transform: translateX(-280px);
+    background-color: white;
+    height: 300px;
+    width: 325px;
+    overflow: auto;
+    border: solid 1px rgb(205, 205, 205);
+
+    display: none;
+}
+.contenedor header ul .notificaciones header {
+    border-bottom: 1px solid rgba(57, 57, 57, 0.162);
+    padding: 10px;
+    font-size: 15px;
+}
+.contenedor header ul .notificaciones .notificacion {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    grid-gap: 10px;
+    padding: 10px;
+
+    margin-bottom: 10px;
+}
+.contenedor header ul .notificaciones .notificacion:hover {
+    background-color: rgb(207, 207, 207);
+    cursor: pointer;
+}
+.contenedor header ul .notificaciones .notificacion .informacion h2 {
+    margin: 0px;
+    font-weight: 500;
+    font-size: 13px;
+}
+.contenedor header ul .notificaciones .notificacion .informacion .descripcion {
+    font-size: 11.8px;
+    width: 200px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.contenedor header ul .notificaciones .notificacion .informacion .fecha {
+    font-size: 11px;
+    color: gray;
+}
+.contenedor header ul .notificaciones .notificacion .icono {
+    padding: 10px;
+    display: grid;
+}
+.contenedor header ul .notificaciones .notificacion .icono svg {
+    color: var(--color-negro);
+    height: 20px;
+    margin: auto;
+}
+.contenedor header ul .notificaciones .notificacion .estado_notificacion {
+    font-size: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-radius: 3px;
+    text-align: center;
+    color: white;
+    margin-top: 5px;
+}
+.contenedor header ul .notificaciones .notificacion .estado_sin_leer {
+    background-color: red;
+}
+.contenedor header ul .notificaciones .notificacion .estado_leido {
+    background-color: gray;
+}
+
+.contenedor header ul .icono_notificacion .numero_notificacion {
+    position: absolute;
+    background-color: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: 600;
+    height: 16px;
+    width: 16px;
+    color: white;
+    font-size: 10.5px;
+    margin-left: 12.5px;
+    cursor: pointer;
+}
+/*FIN NOTIFICACIONES*/
+
+/*FIN HEADER*/
+
+/*Formulario Auth*/
+.formulario_auth {
+    max-width: 450px;
+    margin: auto;
+    background-color: white;
+    padding: 50px;
+    min-height: 400px;
+    box-shadow: 0px 0px 10px rgba(27, 27, 27, 0.2);
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+.formulario_auth .input {
+    display: grid;
+    margin-bottom: 10px;
+}
+.formulario_auth .input label {
+    font-size: 15px;
+}
+.formulario_auth .input input {
+    height: 40px;
+    text-indent: 10px;
+    font-size: 15px;
+    outline: none;
+    border: solid 1px rgb(197, 197, 197);
+}
+.recordar_auth label {
+    font-size: 15px;
+}
+.formulario_auth button {
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: white;
+    background-color: var(--color-principal);
+    border: none;
+}
+
+.contenedor .bienvenida {
+    margin-bottom: 10px;
+}
+
+.contenedor .bienvenida h1 {
+    font-weight: 400;
+    font-size: 20px;
+    color: white;
+    margin: 0px;
+}
+
+.contenedor .bienvenida .fecha {
+    color: rgb(237, 237, 237);
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.navegaciones {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    min-height: 400px;
+    grid-gap: 25px;
+}
+
+.navegaciones .navegacion {
+    height: 175px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(27, 27, 27, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.navegaciones .navegacion i {
+    font-size: 35px;
+    color: var(--color-negro);
+    display: block;
+    margin-bottom: 10px;
+}
+.navegaciones .navegacion span {
+    font-size: 14px;
+    color: var(--color-negro);
+}
+
+/*VIEW*/
+
+.volver {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 20px;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: 400;
+    font-size: 15px;
+    align-items: center;
+}
+
+.volver svg {
+    height: 19px;
+    cursor: pointer;
+}
+.view {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    min-height: 400px;
+    grid-gap: 25px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(27, 27, 27, 0.2);
+}
+/*FIN VIEW*/
+
+/*FOOTER*/
+footer {
+    text-align: center;
+    color: var(--color-negro);
+    font-size: 11.5px;
+    margin-top: 30px !important;
+    height: 45px;
+}
+/*FIN FOOTER*/
