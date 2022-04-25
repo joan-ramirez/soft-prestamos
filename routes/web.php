@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PrestamoController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +25,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/crear-prestamo', [PrestamoController::class, 'create'])->name('create.prestamo');
+Route::get('/prestamos', [PrestamoController::class, 'index'])->name('index.prestamos');
+Route::get('/crear-cliente', [ClienteController::class, 'create'])->name('create.cliente');
+Route::get('/clientes', [ClienteController::class, 'index'])->name('index.clientes');
+Route::get('/usuarios', [UsuarioController::class, 'index'])->name('index.usuarios');
+Route::get('/crear-usuario', [UsuarioController::class, 'create'])->name('create.usuario');

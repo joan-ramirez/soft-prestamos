@@ -10,8 +10,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!--Fontawesome-->
     <script src="https://kit.fontawesome.com/19a1f7c413.js" crossorigin="anonymous"></script>
@@ -43,7 +41,7 @@
                         </li>
                     @endif
                 @else
-                    <li class="icono_notificacion">
+                    <li class="icono_notificacion" onclick="abrir_notificaciones()">
                         <div class="numero_notificacion">1</div>
 
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -53,9 +51,10 @@
                             </path>
                         </svg>
 
-                        <div class="notificaciones">
+                        <div class="notificaciones" id="notificaciones">
                             <header>Notificaciones</header>
-
+                            
+                           <a href="">
                             <div class="notificacion">
                                 <div class="icono">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -78,6 +77,7 @@
                                     <span class="fecha">2022</span>
                                 </div>
                             </div>
+                           </a>
 
                         </div>
                     </li>
@@ -105,9 +105,12 @@
         @yield('content')
 
         <footer class="contenedor_size">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero, tempora.
+            Todos los derechos reservados 2022
         </footer>
     </div>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
 </body>
 

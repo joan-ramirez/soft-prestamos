@@ -83,10 +83,16 @@ body {
 
     display: none;
 }
+
+.abrir_notificaciones {
+    display: block !important;
+}
+
 .contenedor header ul .notificaciones header {
     border-bottom: 1px solid rgba(57, 57, 57, 0.162);
     padding: 10px;
     font-size: 15px;
+    margin: 0px;
 }
 .contenedor header ul .notificaciones .notificacion {
     display: grid;
@@ -94,7 +100,7 @@ body {
     align-items: center;
     grid-gap: 10px;
     padding: 10px;
-
+    color: black;
     margin-bottom: 10px;
 }
 .contenedor header ul .notificaciones .notificacion:hover {
@@ -240,15 +246,34 @@ body {
     transition: 0.3s;
 }
 
+.navegaciones .navegacion:nth-child(1) {
+    background-color: #3498db;
+}
+.navegaciones .navegacion:nth-child(2) {
+    background-color: #2ecc71;
+}
+.navegaciones .navegacion:nth-child(3) {
+    background-color: #e74c3c;
+}
+.navegaciones .navegacion:nth-child(4) {
+    background-color: #f39c12;
+}
+.navegaciones .navegacion:nth-child(5) {
+    background-color: #8e44ad;
+}
+.navegaciones .navegacion:nth-child(6) {
+    background-color: #2980b9;
+}
+
 .navegaciones .navegacion i {
     font-size: 35px;
-    color: var(--color-negro);
+    color: white;
     display: block;
     margin-bottom: 10px;
 }
 .navegaciones .navegacion span {
     font-size: 14px;
-    color: var(--color-negro);
+    color: white;
 }
 
 /*VIEW*/
@@ -268,14 +293,176 @@ body {
     height: 19px;
     cursor: pointer;
 }
+
 .view {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    min-height: 400px;
-    grid-gap: 25px;
+    padding-bottom: 0px;
     background-color: white;
     box-shadow: 0px 0px 10px rgba(27, 27, 27, 0.2);
 }
+.view .links {
+    display: flex;
+    gap: 10px;
+}
+.view .links button {
+    border: none;
+    background-color: transparent;
+    border: solid 1.5px #130f40;
+    color: #130f40;
+    padding: 6px;
+
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.view form {
+    max-width: 700px;
+    width: 90%;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.view form .btn_submit {
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 36px;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: #130f40;
+    color: white;
+}
+
+.view form .input {
+    display: grid;
+    margin-bottom: 20px;
+}
+
+.view form .input label {
+    font-size: 14.5px;
+    margin-bottom: 5px;
+}
+.view form .input input {
+    width: 100%;
+    height: 36px;
+    text-indent: 10px;
+    font-size: 15px;
+    outline: none;
+}
+.view form .select {
+    display: grid;
+    margin-bottom: 20px;
+}
+
+.view form .select label {
+    font-size: 14.5px;
+    margin-bottom: 5px;
+}
+.view form .select select {
+    width: 100%;
+    height: 36px;
+    text-indent: 10px;
+    font-size: 15px;
+    outline: none;
+}
+
+/*usuarios*/
+.view .usuarios {
+    padding: 12px;
+}
+.view .usuarios .labels {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    font-weight: 500;
+    padding-top: 15px;
+    font-size: 13.5px;
+}
+.view .usuarios .labels .label_acciones {
+    display: flex;
+    justify-content: right;
+}
+.view .usuarios .usuario {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 14.5px;
+    border-top: 1px solid rgba(197, 197, 197, 0.762);
+}
+.view .usuarios .buscador {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.view .usuarios .buscador input {
+    width: 100%;
+    outline: none;
+    text-indent: 10px;
+    font-size: 14px;
+    height: 40px;
+    border: 1px solid rgba(128, 128, 128, 0.762);
+}
+.view .usuarios .buscador button {
+    border: none;
+    padding-left: 20px;
+    background-color: var(--color-principal);
+    padding-right: 20px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.view .usuarios .buscador button svg {
+    height: 20px;
+    color: white;
+}
+.view .usuarios .usuario .info {
+    display: grid;
+    font-size: 13.5px;
+    font-weight: 300;
+}
+.view .usuarios .usuario .info .codigo_usuario {
+    font-size: 12.5px;
+    color: gray;
+}
+.view .usuarios .usuario .acciones {
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+    overflow: auto;
+    align-items: center;
+}
+
+.view .usuarios .usuario .acciones button {
+    background-color: transparent;
+    font-size: 12px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.view .usuarios .usuario .acciones button:nth-child(1) {
+    border: solid 1px #e74c3c;
+    color: #e74c3c;
+}
+.view .usuarios .usuario .acciones button:nth-child(2) {
+    border: solid 1px #8e44ad;
+    color: #8e44ad;
+}
+.view .usuarios .usuario .acciones button:nth-child(3) {
+    border: solid 1px #2980b9;
+    color: #2980b9;
+}
+.view .usuarios .usuario .acciones button:nth-child(4) {
+    border: solid 1px #2ecc71;
+    color: #2ecc71;
+}
+
+/*FIN usuarios*/
+
 /*FIN VIEW*/
 
 /*FOOTER*/
