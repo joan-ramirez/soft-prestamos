@@ -14,7 +14,7 @@
                 <span>Nuevo Prestamos</span>
             </div>
         </div>
-
+        
         <div class="navegacion" onclick="location.href=''">
             <div>
                 <i class="fa-solid fa-calendar-days"></i>

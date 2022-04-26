@@ -18,9 +18,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body>
-
-    <div class="contenedor">
+<body >
+    
+    <div class="contenedor" id="app">
         <header class="contenedor_size">
             <div class="logo">
                 Logo

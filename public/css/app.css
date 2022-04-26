@@ -185,6 +185,7 @@ body {
 .formulario_auth .input {
     display: grid;
     margin-bottom: 10px;
+
 }
 .formulario_auth .input label {
     font-size: 15px;
@@ -337,6 +338,7 @@ body {
 .view form .input {
     display: grid;
     margin-bottom: 20px;
+    grid-template-columns: 1fr 2fr;
 }
 
 .view form .input label {
@@ -353,6 +355,9 @@ body {
 .view form .select {
     display: grid;
     margin-bottom: 20px;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    
 }
 
 .view form .select label {
