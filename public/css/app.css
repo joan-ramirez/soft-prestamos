@@ -13,6 +13,12 @@ html {
     --color-negro: black;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 body {
     margin: 0px;
     padding: 0px;
@@ -339,6 +345,8 @@ body {
     display: grid;
     margin-bottom: 20px;
     grid-template-columns: 1fr 2fr;
+   
+    align-items: center;
 }
 
 .view form .input label {

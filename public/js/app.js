@@ -5372,9 +5372,145 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    alert('Hola');
+  mounted: function mounted() {},
+  data: function data() {
+    return {
+      errors: [],
+      cliente: "",
+      importe_de_credito: "",
+      modalidad: "",
+      tasa_de_interes: "",
+      numero_de_cuotas: "",
+      importe_de_cuota: "",
+      total_a_pagar: "",
+      interes_generado: "",
+      fecha_de_inicio: "01/08/2000"
+    };
+  },
+  methods: {
+    escribir: function escribir(e) {
+      console.log(e.target.name);
+    },
+    guardarPrestamo: function guardarPrestamo(e) {
+      e.preventDefault();
+    }
   }
 });
 
@@ -27937,9 +28073,343 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("Formulario aqui")])
+  return _c(
+    "form",
+    {
+      attrs: { action: "", method: "post" },
+      on: { submit: _vm.guardarPrestamo },
+    },
+    [
+      _c("div", { staticClass: "input" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Cliente")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.cliente,
+              expression: "cliente",
+            },
+          ],
+          attrs: { type: "search", placeholder: "Busca cliente por nombre" },
+          domProps: { value: _vm.cliente },
+          on: {
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.cliente = $event.target.value
+              },
+              _vm.escribir,
+            ],
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Importe de Crédito")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.importe_de_credito,
+              expression: "importe_de_credito",
+            },
+          ],
+          attrs: { type: "number", placeholder: "Importe de Crédito" },
+          domProps: { value: _vm.importe_de_credito },
+          on: {
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.importe_de_credito = $event.target.value
+              },
+              _vm.escribir,
+            ],
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "select" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Modalidad")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.modalidad,
+                expression: "modalidad",
+              },
+            ],
+            attrs: { name: "modalidad" },
+            on: {
+              input: _vm.escribir,
+              change: function ($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function (o) {
+                    return o.selected
+                  })
+                  .map(function (o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.modalidad = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+            },
+          },
+          [
+            _c("option", { attrs: { value: "" } }, [
+              _vm._v("-- Seleccione una Modalidad --"),
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "dia" } }, [_vm._v("Dia")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "semanal" } }, [_vm._v("Semenal")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "mensual" } }, [_vm._v("Mensual")]),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Tasa de Interes")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.tasa_de_interes,
+              expression: "tasa_de_interes",
+            },
+          ],
+          attrs: {
+            type: "number",
+            name: "tasa_de_interes",
+            placeholder: "Tasa de Interes",
+          },
+          domProps: { value: _vm.tasa_de_interes },
+          on: {
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.tasa_de_interes = $event.target.value
+              },
+              _vm.escribir,
+            ],
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Nº Cuotas")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.numero_de_cuotas,
+              expression: "numero_de_cuotas",
+            },
+          ],
+          attrs: {
+            type: "number",
+            name: "numero_de_cuotas",
+            placeholder: "Nº Cuotas",
+          },
+          domProps: { value: _vm.numero_de_cuotas },
+          on: {
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.numero_de_cuotas = $event.target.value
+              },
+              _vm.escribir,
+            ],
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Importe de la Cuota")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.importe_de_cuota,
+              expression: "importe_de_cuota",
+            },
+          ],
+          attrs: {
+            type: "number",
+            name: "importe_de_cuota",
+            placeholder: "Importe de la Cuota",
+            readonly: "",
+            disabled: "",
+          },
+          domProps: { value: _vm.importe_de_cuota },
+          on: {
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.importe_de_cuota = $event.target.value
+              },
+              _vm.escribir,
+            ],
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Total a Pagar")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.total_a_pagar,
+              expression: "total_a_pagar",
+            },
+          ],
+          attrs: {
+            type: "number",
+            name: "total_a_pagar",
+            placeholder: "Total a Pagar",
+            disabled: "",
+          },
+          domProps: { value: _vm.total_a_pagar },
+          on: {
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.total_a_pagar = $event.target.value
+              },
+              _vm.escribir,
+            ],
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Interes Generado")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.interes_generado,
+              expression: "interes_generado",
+            },
+          ],
+          attrs: {
+            type: "number",
+            name: "interes_generado",
+            placeholder: "Interes Generado",
+            disabled: "",
+          },
+          domProps: { value: _vm.interes_generado },
+          on: {
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.interes_generado = $event.target.value
+              },
+              _vm.escribir,
+            ],
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Fecha de Inicio")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.fecha_de_inicio,
+              expression: "fecha_de_inicio",
+            },
+          ],
+          attrs: { type: "date", name: "fecha_de_inicio" },
+          domProps: { value: _vm.fecha_de_inicio },
+          on: {
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.fecha_de_inicio = $event.target.value
+              },
+              _vm.escribir,
+            ],
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _vm.errors.length
+        ? _c("div", { staticClass: "input" }, [
+            _c("div"),
+            _vm._v(" "),
+            _c("div", [
+              _c("b", [_vm._v("Por favor corrige los siguientes error(es):")]),
+              _vm._v(" "),
+              _c(
+                "ul",
+                _vm._l(_vm.errors, function (error, index) {
+                  return _c("li", { key: index }, [_vm._v(_vm._s(error))])
+                }),
+                0
+              ),
+            ]),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._m(0),
+    ]
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input" }, [
+      _c("div"),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn_submit", attrs: { type: "submit" } }, [
+        _vm._v("Crear Prestamo"),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 
