@@ -121,7 +121,6 @@
       <label for="">Importe de la Cuota</label>
       <input
         type="number"
-        :class="this.errors[0].importe_de_cuota.length ? 'invalid-input' : ''"
         name="importe_de_cuota"
         v-model="importe_de_cuota"
         @input="escribir"
@@ -131,22 +130,9 @@
       />
     </div>
 
-    <ul v-if="this.errors[0].importe_de_cuota.length" class="errores">
-      <div></div>
-      <div>
-        <li
-          v-for="(error, index) in this.errors[0].importe_de_cuota"
-          :key="index"
-        >
-          {{ error }}
-        </li>
-      </div>
-    </ul>
-
     <div class="input">
       <label for="">Total a Pagar</label>
       <input
-        :class="this.errors[0].total_a_pagar.length ? 'invalid-input' : ''"
         type="number"
         name="total_a_pagar"
         v-model="total_a_pagar"
@@ -156,19 +142,9 @@
       />
     </div>
 
-    <ul v-if="this.errors[0].total_a_pagar.length" class="errores">
-      <div></div>
-      <div>
-        <li v-for="(error, index) in this.errors[0].total_a_pagar" :key="index">
-          {{ error }}
-        </li>
-      </div>
-    </ul>
-
     <div class="input">
       <label for="">Interes Generado</label>
       <input
-        :class="this.errors[0].interes_generado.length ? 'invalid-input' : ''"
         type="number"
         name="interes_generado"
         v-model="interes_generado"
@@ -177,18 +153,6 @@
         disabled
       />
     </div>
-
-    <ul v-if="this.errors[0].interes_generado.length" class="errores">
-      <div></div>
-      <div>
-        <li
-          v-for="(error, index) in this.errors[0].interes_generado"
-          :key="index"
-        >
-          {{ error }}
-        </li>
-      </div>
-    </ul>
 
     <div class="input">
       <label for="">Fecha de Inicio</label>
@@ -221,6 +185,10 @@
 </template>
 
 <script>
+import VueSimpleAlert from "vue-simple-alert";
+
+Vue.use(VueSimpleAlert);
+
 export default {
   mounted() {},
 
@@ -243,15 +211,21 @@ export default {
           modalidad: [],
           tasa_de_interes: [],
           numero_de_cuotas: [],
-          importe_de_cuota: [],
-          total_a_pagar: [],
-          interes_generado: [],
           fecha_de_inicio: [],
         },
       ],
     };
   },
   methods: {
+    alertSuccess() {
+      this.$fire({
+        title: "Prestamo fue exitoso",
+        text: "text",
+        type: "success",
+        timer: 3500,
+      })
+    },
+
     escribir(e) {
       if (
         e.target.name === "importe_de_credito" ||
@@ -284,6 +258,14 @@ export default {
       axios
         .post("http://localhost/soft-prestamos/public/guardar-prestamo", {
           cliente: this.cliente,
+          importe_de_credito: this.importe_de_credito,
+          modalidad: this.modalidad,
+          tasa_de_interes: this.tasa_de_interes,
+          numero_de_cuotas: this.numero_de_cuotas,
+          importe_de_cuota: this.importe_de_cuota,
+          total_a_pagar: this.total_a_pagar,
+          interes_generado: this.interes_generado,
+          fecha_de_inicio: this.fecha_de_inicio,
         })
         .then((response) => {
           // Reset todos los errores
@@ -294,15 +276,12 @@ export default {
               modalidad: [],
               tasa_de_interes: [],
               numero_de_cuotas: [],
-              importe_de_cuota: [],
-              total_a_pagar: [],
-              interes_generado: [],
               fecha_de_inicio: [],
             },
           ];
 
           // Verificacando si se encuentran nuevos errores
-          if (response.data.status != 200) {
+          if (response.data.code != 200) {
             if (response.data.mensaje?.cliente) {
               this.errors[0].cliente = response.data.mensaje?.cliente;
             }
@@ -333,9 +312,14 @@ export default {
 
             return;
           }
-
           // Guardado con exito.
-          console.log("OK");
+          this.alertSuccess();
+
+
+
+
+
+
         });
 
       e.preventDefault();

@@ -37,7 +37,17 @@ class PrestamoController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), ['cliente' => 'required ']);
+        $validator = Validator::make($request->all(), [
+            'cliente' => 'required',
+            'importe_de_credito' => 'required',
+            'modalidad' => 'required',
+            'tasa_de_interes' => 'required',
+            'numero_de_cuotas' => 'required',
+            'importe_de_cuota' => 'required',
+            'total_a_pagar' => 'required',
+            'interes_generado' => 'required',
+            'fecha_de_inicio' => 'required',
+        ]);
 
         if ($validator->fails()) {
 
