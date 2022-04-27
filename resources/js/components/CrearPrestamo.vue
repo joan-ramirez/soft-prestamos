@@ -2,14 +2,28 @@
   <form @submit="guardarPrestamo" method="post">
     <div class="input">
       <label for="">Cliente</label>
-      <input
-        :class="this.errors[0].cliente.length ? 'invalid-input' : ''"
-        type="search"
-        name="cliente"
-        v-model="cliente"
-        @input="escribir"
-        placeholder="Busca cliente por nombre"
-      />
+      <div>
+        <input
+          :class="this.errors[0].cliente.length ? 'invalid-input' : ''"
+          type="search"
+          name="cliente"
+          v-model="cliente"
+          @input="escribir"
+          placeholder="Busca cliente por nombre o cedula de identidad"
+        />
+
+        <div
+          class="result_busqueda_clientes"
+          v-if="restul_clientes.length && cliente"
+        >
+          <div v-for="(cliente, index) in restul_clientes" :key="index">
+            <button type="button" class="restult_cliente">
+              <span>{{ cliente.nombre }} {{ cliente.apellido }}</span>
+              <span class="cedula">{{ cliente.cedula_de_identidad }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <ul v-if="this.errors[0].cliente.length" class="errores">
@@ -194,6 +208,7 @@ export default {
 
   data() {
     return {
+      restul_clientes: [],
       cliente: "",
       importe_de_credito: "",
       modalidad: "",
@@ -223,10 +238,23 @@ export default {
         text: "text",
         type: "success",
         timer: 3500,
-      })
+      });
     },
 
     escribir(e) {
+      if (e.target.name === "cliente") {
+        axios
+          .get("http://localhost/soft-prestamos/public/buscar-cliente", {
+            params: {
+              cliente: this.cliente,
+            },
+          })
+          .then((response) => {
+            this.restul_clientes = response.data.clientes.data;
+            console.log(response.data.clientes.data);
+          });
+      }
+
       if (
         e.target.name === "importe_de_credito" ||
         e.target.name === "tasa_de_interes" ||
@@ -315,11 +343,16 @@ export default {
           // Guardado con exito.
           this.alertSuccess();
 
-
-
-
-
-
+          // Reset Formulario
+          this.cliente = "";
+          this.importe_de_credito = "";
+          this.modalidad = "";
+          this.tasa_de_interes = "";
+          this.numero_de_cuotas = "";
+          this.importe_de_cuota = "";
+          this.total_a_pagar = "";
+          this.interes_generado = "";
+          this.fecha_de_inicio = new Date().toISOString().split("T")[0];
         });
 
       e.preventDefault();

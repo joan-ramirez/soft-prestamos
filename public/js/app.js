@@ -5555,12 +5555,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {},
   data: function data() {
     return {
+      restul_clientes: [],
       cliente: "",
       importe_de_credito: "",
       modalidad: "",
@@ -5590,6 +5605,19 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
       });
     },
     escribir: function escribir(e) {
+      var _this = this;
+
+      if (e.target.name === "cliente") {
+        axios.get("http://localhost/soft-prestamos/public/buscar-cliente", {
+          params: {
+            cliente: this.cliente
+          }
+        }).then(function (response) {
+          _this.restul_clientes = response.data.clientes.data;
+          console.log(response.data.clientes.data);
+        });
+      }
+
       if (e.target.name === "importe_de_credito" || e.target.name === "tasa_de_interes" || e.target.name === "numero_de_cuotas") {
         if (Number(this.importe_de_credito) > 0 && Number(this.tasa_de_interes) > 0 && Number(this.numero_de_cuotas) > 0) {
           this.total_a_pagar = Number(this.importe_de_credito) + Number(this.importe_de_credito * this.tasa_de_interes / 100);
@@ -5603,7 +5631,7 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
       }
     },
     guardarPrestamo: function guardarPrestamo(e) {
-      var _this = this;
+      var _this2 = this;
 
       axios.post("http://localhost/soft-prestamos/public/guardar-prestamo", {
         cliente: this.cliente,
@@ -5617,7 +5645,7 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
         fecha_de_inicio: this.fecha_de_inicio
       }).then(function (response) {
         // Reset todos los errores
-        _this.errors = [{
+        _this2.errors = [{
           cliente: [],
           importe_de_credito: [],
           modalidad: [],
@@ -5632,44 +5660,55 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
           if ((_response$data$mensaj = response.data.mensaje) !== null && _response$data$mensaj !== void 0 && _response$data$mensaj.cliente) {
             var _response$data$mensaj2;
 
-            _this.errors[0].cliente = (_response$data$mensaj2 = response.data.mensaje) === null || _response$data$mensaj2 === void 0 ? void 0 : _response$data$mensaj2.cliente;
+            _this2.errors[0].cliente = (_response$data$mensaj2 = response.data.mensaje) === null || _response$data$mensaj2 === void 0 ? void 0 : _response$data$mensaj2.cliente;
           }
 
           if ((_response$data$mensaj3 = response.data.mensaje) !== null && _response$data$mensaj3 !== void 0 && _response$data$mensaj3.importe_de_credito) {
             var _response$data$mensaj4;
 
-            _this.errors[0].importe_de_credito = (_response$data$mensaj4 = response.data.mensaje) === null || _response$data$mensaj4 === void 0 ? void 0 : _response$data$mensaj4.importe_de_credito;
+            _this2.errors[0].importe_de_credito = (_response$data$mensaj4 = response.data.mensaje) === null || _response$data$mensaj4 === void 0 ? void 0 : _response$data$mensaj4.importe_de_credito;
           }
 
           if ((_response$data$mensaj5 = response.data.mensaje) !== null && _response$data$mensaj5 !== void 0 && _response$data$mensaj5.modalidad) {
             var _response$data$mensaj6;
 
-            _this.errors[0].modalidad = (_response$data$mensaj6 = response.data.mensaje) === null || _response$data$mensaj6 === void 0 ? void 0 : _response$data$mensaj6.modalidad;
+            _this2.errors[0].modalidad = (_response$data$mensaj6 = response.data.mensaje) === null || _response$data$mensaj6 === void 0 ? void 0 : _response$data$mensaj6.modalidad;
           }
 
           if ((_response$data$mensaj7 = response.data.mensaje) !== null && _response$data$mensaj7 !== void 0 && _response$data$mensaj7.tasa_de_interes) {
             var _response$data$mensaj8;
 
-            _this.errors[0].tasa_de_interes = (_response$data$mensaj8 = response.data.mensaje) === null || _response$data$mensaj8 === void 0 ? void 0 : _response$data$mensaj8.tasa_de_interes;
+            _this2.errors[0].tasa_de_interes = (_response$data$mensaj8 = response.data.mensaje) === null || _response$data$mensaj8 === void 0 ? void 0 : _response$data$mensaj8.tasa_de_interes;
           }
 
           if ((_response$data$mensaj9 = response.data.mensaje) !== null && _response$data$mensaj9 !== void 0 && _response$data$mensaj9.numero_de_cuotas) {
             var _response$data$mensaj10;
 
-            _this.errors[0].numero_de_cuotas = (_response$data$mensaj10 = response.data.mensaje) === null || _response$data$mensaj10 === void 0 ? void 0 : _response$data$mensaj10.numero_de_cuotas;
+            _this2.errors[0].numero_de_cuotas = (_response$data$mensaj10 = response.data.mensaje) === null || _response$data$mensaj10 === void 0 ? void 0 : _response$data$mensaj10.numero_de_cuotas;
           }
 
           if ((_response$data$mensaj11 = response.data.mensaje) !== null && _response$data$mensaj11 !== void 0 && _response$data$mensaj11.fecha_de_inicio) {
             var _response$data$mensaj12;
 
-            _this.errors[0].fecha_de_inicio = (_response$data$mensaj12 = response.data.mensaje) === null || _response$data$mensaj12 === void 0 ? void 0 : _response$data$mensaj12.fecha_de_inicio;
+            _this2.errors[0].fecha_de_inicio = (_response$data$mensaj12 = response.data.mensaje) === null || _response$data$mensaj12 === void 0 ? void 0 : _response$data$mensaj12.fecha_de_inicio;
           }
 
           return;
         } // Guardado con exito.
 
 
-        _this.alertSuccess();
+        _this2.alertSuccess(); // Reset Formulario
+
+
+        _this2.cliente = "";
+        _this2.importe_de_credito = "";
+        _this2.modalidad = "";
+        _this2.tasa_de_interes = "";
+        _this2.numero_de_cuotas = "";
+        _this2.importe_de_cuota = "";
+        _this2.total_a_pagar = "";
+        _this2.interes_generado = "";
+        _this2.fecha_de_inicio = new Date().toISOString().split("T")[0];
       });
       e.preventDefault();
     }
@@ -31166,34 +31205,68 @@ var render = function () {
       _c("div", { staticClass: "input" }, [
         _c("label", { attrs: { for: "" } }, [_vm._v("Cliente")]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.cliente,
-              expression: "cliente",
-            },
-          ],
-          class: this.errors[0].cliente.length ? "invalid-input" : "",
-          attrs: {
-            type: "search",
-            name: "cliente",
-            placeholder: "Busca cliente por nombre",
-          },
-          domProps: { value: _vm.cliente },
-          on: {
-            input: [
-              function ($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.cliente = $event.target.value
+        _c("div", [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.cliente,
+                expression: "cliente",
               },
-              _vm.escribir,
             ],
-          },
-        }),
+            class: this.errors[0].cliente.length ? "invalid-input" : "",
+            attrs: {
+              type: "search",
+              name: "cliente",
+              placeholder: "Busca cliente por nombre o cedula de identidad",
+            },
+            domProps: { value: _vm.cliente },
+            on: {
+              input: [
+                function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.cliente = $event.target.value
+                },
+                _vm.escribir,
+              ],
+            },
+          }),
+          _vm._v(" "),
+          _vm.restul_clientes.length && _vm.cliente
+            ? _c(
+                "div",
+                { staticClass: "result_busqueda_clientes" },
+                _vm._l(_vm.restul_clientes, function (cliente, index) {
+                  return _c("div", { key: index }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "restult_cliente",
+                        attrs: { type: "button" },
+                      },
+                      [
+                        _c("span", [
+                          _vm._v(
+                            _vm._s(cliente.nombre) +
+                              " " +
+                              _vm._s(cliente.apellido)
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "cedula" }, [
+                          _vm._v(_vm._s(cliente.cedula_de_identidad)),
+                        ]),
+                      ]
+                    ),
+                  ])
+                }),
+                0
+              )
+            : _vm._e(),
+        ]),
       ]),
       _vm._v(" "),
       this.errors[0].cliente.length

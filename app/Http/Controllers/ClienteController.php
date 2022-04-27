@@ -44,9 +44,19 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function show(Cliente $cliente)
+    public function show(Request $request, Cliente $cliente)
     {
-        //
+        $query = $request['cliente'];
+
+        $clientes = $cliente->query()->where('nombre', 'like', "%{$query}%")->orWhere('cedula_de_identidad', 'LIKE', "%{$query}%")->paginate(10);
+
+        $data = array(
+            "code" => 200,
+            "clientes" => $clientes,
+        );
+
+
+        return json_encode($data, true);
     }
 
     /**

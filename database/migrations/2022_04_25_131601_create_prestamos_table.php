@@ -13,6 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
+
+        Schema::create('clientes', function (Blueprint $table) {
+            $table->id();
+            $table->string('cedula_de_identidad')->unique();
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->string('numero_de_telefono');
+            $table->string('correo_electronico');
+            $table->date('fecha_de_nacimiento');
+            $table->text('ubicacion');
+            $table->boolean('status');
+            $table->timestamps();
+        });
+
         Schema::create('prestamos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_cliente')->references('id')->on('clientes')->comment('El ID del cliente que cogio el prestamo');
@@ -36,5 +50,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('prestamos');
+
+        Schema::dropIfExists('clientes');
     }
 };
