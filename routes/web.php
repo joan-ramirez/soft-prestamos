@@ -24,10 +24,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/crear-prestamo', [PrestamoController::class, 'create'])->name('create.prestamo');
+
+
 Route::get('/prestamos', [PrestamoController::class, 'index'])->name('index.prestamos');
+Route::get('/crear-prestamo', [PrestamoController::class, 'create'])->name('create.prestamo');
+Route::post('/guardar-prestamo', [PrestamoController::class, 'store'])->name('store.prestamo');
+
+
 Route::get('/crear-cliente', [ClienteController::class, 'create'])->name('create.cliente');
 Route::get('/clientes', [ClienteController::class, 'index'])->name('index.clientes');
+
+
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('index.usuarios');
 Route::get('/crear-usuario', [UsuarioController::class, 'create'])->name('create.usuario');
+

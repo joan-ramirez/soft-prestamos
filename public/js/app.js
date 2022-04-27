@@ -5488,11 +5488,112 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {},
   data: function data() {
     return {
-      errors: [],
       cliente: "",
       importe_de_credito: "",
       modalidad: "",
@@ -5501,14 +5602,98 @@ __webpack_require__.r(__webpack_exports__);
       importe_de_cuota: "",
       total_a_pagar: "",
       interes_generado: "",
-      fecha_de_inicio: "01/08/2000"
+      fecha_de_inicio: new Date().toISOString().split("T")[0],
+      errors: [{
+        cliente: [],
+        importe_de_credito: [],
+        modalidad: [],
+        tasa_de_interes: [],
+        numero_de_cuotas: [],
+        importe_de_cuota: [],
+        total_a_pagar: [],
+        interes_generado: [],
+        fecha_de_inicio: []
+      }]
     };
   },
   methods: {
     escribir: function escribir(e) {
-      console.log(e.target.name);
+      if (e.target.name === "importe_de_credito" || e.target.name === "tasa_de_interes" || e.target.name === "numero_de_cuotas") {
+        if (Number(this.importe_de_credito) > 0 && Number(this.tasa_de_interes) > 0 && Number(this.numero_de_cuotas) > 0) {
+          this.total_a_pagar = Number(this.importe_de_credito) + Number(this.importe_de_credito * this.tasa_de_interes / 100);
+          this.interes_generado = Number(this.importe_de_credito * this.tasa_de_interes / 100);
+          this.importe_de_cuota = Number(this.total_a_pagar / this.numero_de_cuotas);
+        } else {
+          this.total_a_pagar = "";
+          this.interes_generado = "";
+          this.importe_de_cuota = "";
+        }
+      }
     },
     guardarPrestamo: function guardarPrestamo(e) {
+      var _this = this;
+
+      axios.post("http://localhost/soft-prestamos/public/guardar-prestamo", {
+        cliente: this.cliente
+      }).then(function (response) {
+        // Reset todos los errores
+        _this.errors = [{
+          cliente: [],
+          importe_de_credito: [],
+          modalidad: [],
+          tasa_de_interes: [],
+          numero_de_cuotas: [],
+          importe_de_cuota: [],
+          total_a_pagar: [],
+          interes_generado: [],
+          fecha_de_inicio: []
+        }]; // Verificacando si se encuentran nuevos errores
+
+        if (response.data.status != 200) {
+          var _response$data$mensaj, _response$data$mensaj3, _response$data$mensaj5, _response$data$mensaj7, _response$data$mensaj9, _response$data$mensaj11;
+
+          if ((_response$data$mensaj = response.data.mensaje) !== null && _response$data$mensaj !== void 0 && _response$data$mensaj.cliente) {
+            var _response$data$mensaj2;
+
+            _this.errors[0].cliente = (_response$data$mensaj2 = response.data.mensaje) === null || _response$data$mensaj2 === void 0 ? void 0 : _response$data$mensaj2.cliente;
+          }
+
+          if ((_response$data$mensaj3 = response.data.mensaje) !== null && _response$data$mensaj3 !== void 0 && _response$data$mensaj3.importe_de_credito) {
+            var _response$data$mensaj4;
+
+            _this.errors[0].importe_de_credito = (_response$data$mensaj4 = response.data.mensaje) === null || _response$data$mensaj4 === void 0 ? void 0 : _response$data$mensaj4.importe_de_credito;
+          }
+
+          if ((_response$data$mensaj5 = response.data.mensaje) !== null && _response$data$mensaj5 !== void 0 && _response$data$mensaj5.modalidad) {
+            var _response$data$mensaj6;
+
+            _this.errors[0].modalidad = (_response$data$mensaj6 = response.data.mensaje) === null || _response$data$mensaj6 === void 0 ? void 0 : _response$data$mensaj6.modalidad;
+          }
+
+          if ((_response$data$mensaj7 = response.data.mensaje) !== null && _response$data$mensaj7 !== void 0 && _response$data$mensaj7.tasa_de_interes) {
+            var _response$data$mensaj8;
+
+            _this.errors[0].tasa_de_interes = (_response$data$mensaj8 = response.data.mensaje) === null || _response$data$mensaj8 === void 0 ? void 0 : _response$data$mensaj8.tasa_de_interes;
+          }
+
+          if ((_response$data$mensaj9 = response.data.mensaje) !== null && _response$data$mensaj9 !== void 0 && _response$data$mensaj9.numero_de_cuotas) {
+            var _response$data$mensaj10;
+
+            _this.errors[0].numero_de_cuotas = (_response$data$mensaj10 = response.data.mensaje) === null || _response$data$mensaj10 === void 0 ? void 0 : _response$data$mensaj10.numero_de_cuotas;
+          }
+
+          if ((_response$data$mensaj11 = response.data.mensaje) !== null && _response$data$mensaj11 !== void 0 && _response$data$mensaj11.fecha_de_inicio) {
+            var _response$data$mensaj12;
+
+            _this.errors[0].fecha_de_inicio = (_response$data$mensaj12 = response.data.mensaje) === null || _response$data$mensaj12 === void 0 ? void 0 : _response$data$mensaj12.fecha_de_inicio;
+          }
+
+          return;
+        } // Guardado con exito.
+
+
+        console.log("OK");
+      });
       e.preventDefault();
     }
   }
@@ -28075,10 +28260,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "form",
-    {
-      attrs: { action: "", method: "post" },
-      on: { submit: _vm.guardarPrestamo },
-    },
+    { attrs: { method: "post" }, on: { submit: _vm.guardarPrestamo } },
     [
       _c("div", { staticClass: "input" }, [
         _c("label", { attrs: { for: "" } }, [_vm._v("Cliente")]),
@@ -28092,7 +28274,12 @@ var render = function () {
               expression: "cliente",
             },
           ],
-          attrs: { type: "search", placeholder: "Busca cliente por nombre" },
+          class: this.errors[0].cliente.length ? "invalid-input" : "",
+          attrs: {
+            type: "search",
+            name: "cliente",
+            placeholder: "Busca cliente por nombre",
+          },
           domProps: { value: _vm.cliente },
           on: {
             input: [
@@ -28108,6 +28295,22 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
+      this.errors[0].cliente.length
+        ? _c("ul", { staticClass: "errores" }, [
+            _c("div"),
+            _vm._v(" "),
+            _c(
+              "div",
+              _vm._l(this.errors[0].cliente, function (error, index) {
+                return _c("li", { key: index }, [
+                  _vm._v("\n        " + _vm._s(error) + "\n      "),
+                ])
+              }),
+              0
+            ),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "input" }, [
         _c("label", { attrs: { for: "" } }, [_vm._v("Importe de Crédito")]),
         _vm._v(" "),
@@ -28120,7 +28323,14 @@ var render = function () {
               expression: "importe_de_credito",
             },
           ],
-          attrs: { type: "number", placeholder: "Importe de Crédito" },
+          class: this.errors[0].importe_de_credito.length
+            ? "invalid-input"
+            : "",
+          attrs: {
+            type: "number",
+            name: "importe_de_credito",
+            placeholder: "Importe de Crédito",
+          },
           domProps: { value: _vm.importe_de_credito },
           on: {
             input: [
@@ -28136,6 +28346,25 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
+      this.errors[0].importe_de_credito.length
+        ? _c("ul", { staticClass: "errores" }, [
+            _c("div"),
+            _vm._v(" "),
+            _c(
+              "div",
+              _vm._l(
+                this.errors[0].importe_de_credito,
+                function (error, index) {
+                  return _c("li", { key: index }, [
+                    _vm._v("\n        " + _vm._s(error) + "\n      "),
+                  ])
+                }
+              ),
+              0
+            ),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "select" }, [
         _c("label", { attrs: { for: "" } }, [_vm._v("Modalidad")]),
         _vm._v(" "),
@@ -28150,6 +28379,7 @@ var render = function () {
                 expression: "modalidad",
               },
             ],
+            class: this.errors[0].modalidad.length ? "invalid-input" : "",
             attrs: { name: "modalidad" },
             on: {
               input: _vm.escribir,
@@ -28182,6 +28412,22 @@ var render = function () {
         ),
       ]),
       _vm._v(" "),
+      this.errors[0].modalidad.length
+        ? _c("ul", { staticClass: "errores" }, [
+            _c("div"),
+            _vm._v(" "),
+            _c(
+              "div",
+              _vm._l(this.errors[0].modalidad, function (error, index) {
+                return _c("li", { key: index }, [
+                  _vm._v("\n        " + _vm._s(error) + "\n      "),
+                ])
+              }),
+              0
+            ),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "input" }, [
         _c("label", { attrs: { for: "" } }, [_vm._v("Tasa de Interes")]),
         _vm._v(" "),
@@ -28194,6 +28440,7 @@ var render = function () {
               expression: "tasa_de_interes",
             },
           ],
+          class: this.errors[0].tasa_de_interes.length ? "invalid-input" : "",
           attrs: {
             type: "number",
             name: "tasa_de_interes",
@@ -28214,6 +28461,22 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
+      this.errors[0].tasa_de_interes.length
+        ? _c("ul", { staticClass: "errores" }, [
+            _c("div"),
+            _vm._v(" "),
+            _c(
+              "div",
+              _vm._l(this.errors[0].tasa_de_interes, function (error, index) {
+                return _c("li", { key: index }, [
+                  _vm._v("\n        " + _vm._s(error) + "\n      "),
+                ])
+              }),
+              0
+            ),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "input" }, [
         _c("label", { attrs: { for: "" } }, [_vm._v("Nº Cuotas")]),
         _vm._v(" "),
@@ -28226,6 +28489,7 @@ var render = function () {
               expression: "numero_de_cuotas",
             },
           ],
+          class: this.errors[0].numero_de_cuotas.length ? "invalid-input" : "",
           attrs: {
             type: "number",
             name: "numero_de_cuotas",
@@ -28246,6 +28510,22 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
+      this.errors[0].numero_de_cuotas.length
+        ? _c("ul", { staticClass: "errores" }, [
+            _c("div"),
+            _vm._v(" "),
+            _c(
+              "div",
+              _vm._l(this.errors[0].numero_de_cuotas, function (error, index) {
+                return _c("li", { key: index }, [
+                  _vm._v("\n        " + _vm._s(error) + "\n      "),
+                ])
+              }),
+              0
+            ),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "input" }, [
         _c("label", { attrs: { for: "" } }, [_vm._v("Importe de la Cuota")]),
         _vm._v(" "),
@@ -28258,6 +28538,7 @@ var render = function () {
               expression: "importe_de_cuota",
             },
           ],
+          class: this.errors[0].importe_de_cuota.length ? "invalid-input" : "",
           attrs: {
             type: "number",
             name: "importe_de_cuota",
@@ -28280,6 +28561,22 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
+      this.errors[0].importe_de_cuota.length
+        ? _c("ul", { staticClass: "errores" }, [
+            _c("div"),
+            _vm._v(" "),
+            _c(
+              "div",
+              _vm._l(this.errors[0].importe_de_cuota, function (error, index) {
+                return _c("li", { key: index }, [
+                  _vm._v("\n        " + _vm._s(error) + "\n      "),
+                ])
+              }),
+              0
+            ),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "input" }, [
         _c("label", { attrs: { for: "" } }, [_vm._v("Total a Pagar")]),
         _vm._v(" "),
@@ -28292,6 +28589,7 @@ var render = function () {
               expression: "total_a_pagar",
             },
           ],
+          class: this.errors[0].total_a_pagar.length ? "invalid-input" : "",
           attrs: {
             type: "number",
             name: "total_a_pagar",
@@ -28313,6 +28611,22 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
+      this.errors[0].total_a_pagar.length
+        ? _c("ul", { staticClass: "errores" }, [
+            _c("div"),
+            _vm._v(" "),
+            _c(
+              "div",
+              _vm._l(this.errors[0].total_a_pagar, function (error, index) {
+                return _c("li", { key: index }, [
+                  _vm._v("\n        " + _vm._s(error) + "\n      "),
+                ])
+              }),
+              0
+            ),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "input" }, [
         _c("label", { attrs: { for: "" } }, [_vm._v("Interes Generado")]),
         _vm._v(" "),
@@ -28325,6 +28639,7 @@ var render = function () {
               expression: "interes_generado",
             },
           ],
+          class: this.errors[0].interes_generado.length ? "invalid-input" : "",
           attrs: {
             type: "number",
             name: "interes_generado",
@@ -28346,6 +28661,22 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
+      this.errors[0].interes_generado.length
+        ? _c("ul", { staticClass: "errores" }, [
+            _c("div"),
+            _vm._v(" "),
+            _c(
+              "div",
+              _vm._l(this.errors[0].interes_generado, function (error, index) {
+                return _c("li", { key: index }, [
+                  _vm._v("\n        " + _vm._s(error) + "\n      "),
+                ])
+              }),
+              0
+            ),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "input" }, [
         _c("label", { attrs: { for: "" } }, [_vm._v("Fecha de Inicio")]),
         _vm._v(" "),
@@ -28358,6 +28689,7 @@ var render = function () {
               expression: "fecha_de_inicio",
             },
           ],
+          class: this.errors[0].fecha_de_inicio.length ? "invalid-input" : "",
           attrs: { type: "date", name: "fecha_de_inicio" },
           domProps: { value: _vm.fecha_de_inicio },
           on: {
@@ -28374,21 +28706,19 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
-      _vm.errors.length
-        ? _c("div", { staticClass: "input" }, [
+      this.errors[0].fecha_de_inicio.length
+        ? _c("ul", { staticClass: "errores" }, [
             _c("div"),
             _vm._v(" "),
-            _c("div", [
-              _c("b", [_vm._v("Por favor corrige los siguientes error(es):")]),
-              _vm._v(" "),
-              _c(
-                "ul",
-                _vm._l(_vm.errors, function (error, index) {
-                  return _c("li", { key: index }, [_vm._v(_vm._s(error))])
-                }),
-                0
-              ),
-            ]),
+            _c(
+              "div",
+              _vm._l(this.errors[0].fecha_de_inicio, function (error, index) {
+                return _c("li", { key: index }, [
+                  _vm._v("\n        " + _vm._s(error) + "\n      "),
+                ])
+              }),
+              0
+            ),
           ])
         : _vm._e(),
       _vm._v(" "),

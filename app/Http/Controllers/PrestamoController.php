@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Prestamo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PrestamoController extends Controller
 {
@@ -35,7 +36,32 @@ class PrestamoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validator = Validator::make($request->all(), ['cliente' => 'required ']);
+
+        if ($validator->fails()) {
+
+            $errors = $validator->errors();
+
+            $data = array(
+                "code" => 500,
+                "mensaje" => $errors,
+            );
+        } else {
+
+            /* Mesa::create([
+                'nombre' => $request['nombre'],
+                'status' => 1,
+               
+            ]);*/
+
+            $data = array(
+                "code" => 200,
+                "mensaje" => "Prestamo registrado...",
+            );
+        }
+
+        return json_encode($data, true);
     }
 
     /**
