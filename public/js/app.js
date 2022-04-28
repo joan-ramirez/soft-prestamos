@@ -5577,6 +5577,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -31294,8 +31296,6 @@ var render = function () {
                       _vm._v(
                         "\n          " +
                           _vm._s(cliente.nombre) +
-                          " " +
-                          _vm._s(cliente.apellido) +
                           " -\n          " +
                           _vm._s(cliente.cedula_de_identidad) +
                           "\n        "

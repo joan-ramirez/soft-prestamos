@@ -3,7 +3,6 @@
     <div class="input">
       <label for="">Cliente</label>
       <div>
-
         <input
           type="search"
           name="cliente"
@@ -13,24 +12,27 @@
           :class="this.errors[0].cliente.length ? 'invalid-input' : ''"
         />
 
-        <label for="" v-if="restul_clientes.length && cliente" style="font-size:13px;">Selecione un cliente:</label>
+        <label
+          for=""
+          v-if="restul_clientes.length && cliente"
+          style="font-size: 13px"
+          >Selecione un cliente:</label
+        >
         <select
           v-model="cliente"
           name="cliente"
           class="result_busqueda_clientes"
-          v-if="restul_clientes.length && cliente">
-
+          v-if="restul_clientes.length && cliente"
+        >
           <option
             :value="cliente.cedula_de_identidad"
             v-for="(cliente, index) in restul_clientes"
-            :key="index">
-            {{ cliente.nombre }} {{ cliente.apellido }} -
+            :key="index"
+          >
+            {{ cliente.nombre }} -
             {{ cliente.cedula_de_identidad }}
           </option>
-
         </select>
-
-
       </div>
     </div>
 

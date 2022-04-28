@@ -32,7 +32,7 @@
 
             <div class="labels">
                 <div class="label_usuario">
-                    <span>usuario</span>
+                    <span>Cliente</span>
                 </div>
 
                 <div class="label_acciones">
@@ -45,7 +45,7 @@
                 <div class="usuario">
 
                     <div class="info">
-                        <span class="nombre_usuario">{{ $cliente->nombre }} {{ $cliente->apellido }}</span>
+                        <span class="nombre_usuario">{{ $cliente->nombre }}</span>
                         <span class="codigo_usuario">{{ $cliente->cedula_de_identidad }}</span>
                     </div>
 

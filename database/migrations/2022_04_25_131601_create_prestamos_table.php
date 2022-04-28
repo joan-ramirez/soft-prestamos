@@ -18,7 +18,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('cedula_de_identidad')->unique();
             $table->string('nombre');
-            $table->string('apellido');
             $table->string('numero_de_telefono');
             $table->string('correo_electronico');
             $table->date('fecha_de_nacimiento');

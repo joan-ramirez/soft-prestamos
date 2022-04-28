@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="volver contenedor_size">
         <svg onclick="location.href='{{ route('home') }}'" class="w-6 h-6" fill="none" stroke="currentColor"
             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -10,23 +11,24 @@
 
     <section class="view contenedor_size">
 
-
         <div class="usuarios">
-
 
             <div class="links">
                 <a href="{{ route('create.usuario') }}"><button>Crear Usuario</button></a>
             </div>
 
+            <form action="{{ route('index.usuarios') }}" method="get" class="buscador">
 
-            <div class="buscador">
-                <input type="search" name="" id="" placeholder="Buscar usuario por nombre o codigo">
-                <button><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                <input type="search" name="search" value="{{ $query }}" placeholder="Buscar usuario por nombre o correo electronico">
+
+                <button type="submit">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg> </button>
-            </div>
+                    </svg>
+                </button>
+            </form>
 
             <div class="labels">
                 <div class="label_usuario">
@@ -38,23 +40,26 @@
                 </div>
             </div>
 
+            @foreach ($usuarios as $usuario)
+                <div class="usuario">
 
-            <div class="usuario">
+                    <div class="info">
+                        <span class="nombre_usuario">{{ $usuario->name }}</span>
+                        <span class="codigo_usuario">{{ $usuario->email }}</span>
+                    </div>
 
-                <div class="info">
-                    <span class="nombre_usuario">Joan ramirez</span>
-                    <span class="codigo_usuario">40218177638</span>
+                    <div class="acciones">
+                        <button>Desactivar</button>
+                        <button>Detalle</button>
+                    </div>
+
                 </div>
+            @endforeach
 
-                <div class="acciones">
-                    <button>Desactivar</button>
-                    <button>Detalle</button>
-                </div>
-
-            </div>
-
+            {{ $usuarios->links() }}
 
         </div>
 
     </section>
+
 @endsection

@@ -355,6 +355,24 @@ body {
     color: white;
 }
 
+.roles {
+    display: grid;
+    margin-bottom: 20px;
+    grid-template-columns: 1fr 2fr;
+}
+
+.roles .rols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+}
+
+.roles .rols .rol {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
 .view form .input {
     display: grid;
     margin-bottom: 20px;
@@ -447,7 +465,7 @@ body {
     display: grid;
     grid-template-columns: 1fr auto;
     margin-top: 20px;
-
+    min-width: 100% !important;
     margin-bottom: 10px;
 }
 .view .usuarios .buscador input {
@@ -522,16 +540,17 @@ body {
 
 .pagination {
     text-align: center;
+    margin-top: 20px;
 }
 
 .pagination .links {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
+    font-size: 15px;
 }
 .pagination .info_pagination {
     font-size: 14px;
-  
 }
 /*FIN pagination*/
 

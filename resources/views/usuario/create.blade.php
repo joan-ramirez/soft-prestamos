@@ -10,27 +10,62 @@
 
     <section class="view contenedor_size">
 
-        <form action="" method="post">
+        <form action="{{ route('store.usuario') }}" method="post">
+            @csrf
 
             <div class="input">
                 <label for="">Nombre:</label>
-                <input type="text" placeholder="Nombre">
+
+                <div>
+                    <input type="text" value="{{ old('nombre') }}" class="@error('nombre') invalid-input @enderror"
+                        name="nombre" placeholder="Nombre">
+                    @error('nombre')
+                        <span class="error_text" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
+
             </div>
 
             <div class="input">
                 <label for="">Apellido:</label>
-                <input type="text" placeholder="Apellido">
+                <div> <input type="text" value="{{ old('apellido') }}" name="apellido" placeholder="Apellido">
+
+                    @error('apellido')
+                        <span class="error_text" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
             </div>
 
 
             <div class="input">
                 <label for="">Correo Electrónico:</label>
-                <input type="text" placeholder="Correo Electrónico">
+                <div><input type="email" value="{{ old('correo_electronico') }}" name="correo_electronico"
+                        placeholder="Correo Electrónico">
+
+                    @error('correo_electronico')
+                        <span class="error_text" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
             </div>
 
             <div class="input">
                 <label for="">Contraseña de acceso:</label>
-                <input type="password" placeholder="Contraseña de acceso">
+                <div><input type="password" name="password" placeholder="password" placeholder="Contraseña de acceso">
+
+
+                    @error('password')
+                        <span class="error_text" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
+
             </div>
 
 
@@ -38,46 +73,15 @@
                 <label for="">Selecciona roles:</label>
                 <div class="rols">
 
+                    @foreach ($roles as $rol)
                     <label class="rol">
-                        <input type="checkbox" name="" id="">
+                        <input type="checkbox" value="{{ $rol->id }}" name="rol">
                         <div class="text-rol">
-                            Ver notificaciones
+                           {{ $rol->nombre }}
                         </div>
                     </label>
-                    <label class="rol">
-                        <input type="checkbox" name="" id="">
-                        <div class="text-rol">
-                            Usuarios
-                        </div>
-                    </label>
-                    <label class="rol">
-                        <input type="checkbox" name="" id="">
-                        <div class="text-rol">
-                            Clientes
-                        </div>
-                    </label>
-                    <label class="rol">
-                        <input type="checkbox" name="" id="">
-                        <div class="text-rol">
-                           Nuevo prestamos
-                        </div>
-                    </label>
-                    <label class="rol">
-                        <input type="checkbox" name="" id="">
-                        <div class="text-rol">
-                           Cuotas atrasadas
-                        </div>
-                    </label>
-                    <label class="rol">
-                        <input type="checkbox" name="" id="">
-                        <div class="text-rol">
-                            Cobros del dia
-                        </div>
-                    </label>
-
-
-
-
+                    @endforeach
+                
 
                 </div>
             </div>

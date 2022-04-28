@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\Rol;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -12,9 +14,21 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user, Request $request)
     {
-        return view('usuario.index');
+        if (isset($request['search'])) {
+            return redirect()->route('index.usuarios', ['query' => $request['search']]);
+        }
+
+        $query = $request['query'];
+
+        if (!$query) {
+            $query = "";
+        }
+
+        $usuarios = $user->query()->where('name', 'like', "%{$query}%")->orWhere('email', 'LIKE', "%{$query}%")->paginate(15);
+
+        return view('usuario.index', compact('usuarios', 'query'));
     }
 
     /**
@@ -24,7 +38,10 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('usuario.create');
+
+        $roles = Rol::all();
+
+        return view('usuario.create',compact('roles'));
     }
 
     /**
@@ -35,16 +52,28 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'correo_electronico' => 'required | email  | unique:users,email',
+            'password' => 'required',
+        ]);
+
+        User::create([
+            'name' => $request['nombre'] . ' ' .  $request['apellido'],
+            'email' => $request['correo_electronico'],
+            'password' => Hash::make($request['password']),
+
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Usuario  $usuario
+     * @param  \App\Models\User  $User
      * @return \Illuminate\Http\Response
      */
-    public function show(Usuario $usuario)
+    public function show(User $User)
     {
         //
     }
@@ -52,10 +81,10 @@ class UsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Usuario  $usuario
+     * @param  \App\Models\User  $User
      * @return \Illuminate\Http\Response
      */
-    public function edit(Usuario $usuario)
+    public function edit(User $User)
     {
         //
     }
@@ -64,10 +93,10 @@ class UsuarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Usuario  $usuario
+     * @param  \App\Models\User  $User
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, User $User)
     {
         //
     }
@@ -75,10 +104,10 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Usuario  $usuario
+     * @param  \App\Models\User  $User
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuario $usuario)
+    public function destroy(User $User)
     {
         //
     }

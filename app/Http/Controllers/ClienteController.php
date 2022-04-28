@@ -25,9 +25,9 @@ class ClienteController extends Controller
             $query = "";
         }
 
-        $clientes = $cliente->query()->where('nombre', 'like', "%{$query}%")->orWhere('cedula_de_identidad', 'LIKE', "%{$query}%")->paginate(1);
+        $clientes = $cliente->query()->where('nombre', 'like', "%{$query}%")->orWhere('cedula_de_identidad', 'LIKE', "%{$query}%")->paginate(15);
 
-        return view('cliente.index', compact('clientes','query'));
+        return view('cliente.index', compact('clientes', 'query'));
     }
 
     /**
@@ -61,8 +61,7 @@ class ClienteController extends Controller
 
         Cliente::create([
             'cedula_de_identidad' =>  $request['cedula_de_identidad'],
-            'nombre' => $request['nombre'],
-            'apellido' => $request['apellido'],
+            'nombre' => $request['nombre'] . ' ' .  $request['apellido'],
             'numero_de_telefono' => $request['numero_de_telefono'],
             'correo_electronico' => $request['correo_electronico'],
             'fecha_de_nacimiento' => $request['fecha_de_nacimiento'],

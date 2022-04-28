@@ -20,7 +20,7 @@
 
 
             <div class="buscador">
-                <input type="search" name="" id="" placeholder="Buscar prestamos de usuario">
+                <input type="search" name="" id="" placeholder="Buscar prestamos de cliente por nombre o Cédula de identidad">
                 <button><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -30,7 +30,7 @@
 
             <div class="labels">
                 <div class="label_usuario">
-                    <span>Usuario</span>
+                    <span>Cliente con prestamos</span>
                 </div>
 
                 <div class="label_acciones">
