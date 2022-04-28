@@ -5569,6 +5569,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5656,6 +5664,8 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
         if (response.data.code != 200) {
           var _response$data$mensaj, _response$data$mensaj3, _response$data$mensaj5, _response$data$mensaj7, _response$data$mensaj9, _response$data$mensaj11;
+
+          console.log(response.data);
 
           if ((_response$data$mensaj = response.data.mensaje) !== null && _response$data$mensaj !== void 0 && _response$data$mensaj.cliente) {
             var _response$data$mensaj2;
@@ -31237,31 +31247,61 @@ var render = function () {
           _vm._v(" "),
           _vm.restul_clientes.length && _vm.cliente
             ? _c(
-                "div",
-                { staticClass: "result_busqueda_clientes" },
+                "label",
+                { staticStyle: { "font-size": "13px" }, attrs: { for: "" } },
+                [_vm._v("Selecione un cliente:")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.restul_clientes.length && _vm.cliente
+            ? _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.cliente,
+                      expression: "cliente",
+                    },
+                  ],
+                  staticClass: "result_busqueda_clientes",
+                  attrs: { name: "cliente" },
+                  on: {
+                    change: function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.cliente = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                  },
+                },
                 _vm._l(_vm.restul_clientes, function (cliente, index) {
-                  return _c("div", { key: index }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "restult_cliente",
-                        attrs: { type: "button" },
-                      },
-                      [
-                        _c("span", [
-                          _vm._v(
-                            _vm._s(cliente.nombre) +
-                              " " +
-                              _vm._s(cliente.apellido)
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "cedula" }, [
-                          _vm._v(_vm._s(cliente.cedula_de_identidad)),
-                        ]),
-                      ]
-                    ),
-                  ])
+                  return _c(
+                    "option",
+                    {
+                      key: index,
+                      domProps: { value: cliente.cedula_de_identidad },
+                    },
+                    [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(cliente.nombre) +
+                          " " +
+                          _vm._s(cliente.apellido) +
+                          " -\n          " +
+                          _vm._s(cliente.cedula_de_identidad) +
+                          "\n        "
+                      ),
+                    ]
+                  )
                 }),
                 0
               )

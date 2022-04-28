@@ -12,9 +12,22 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Cliente $cliente)
     {
-        return view('cliente.index');
+
+        if (isset($request['search'])) {
+            return redirect()->route('index.clientes', ['query' => $request['search']]);
+        }
+
+        $query = $request['query'];
+
+        if (!$query) {
+            $query = "";
+        }
+
+        $clientes = $cliente->query()->where('nombre', 'like', "%{$query}%")->orWhere('cedula_de_identidad', 'LIKE', "%{$query}%")->paginate(1);
+
+        return view('cliente.index', compact('clientes','query'));
     }
 
     /**
@@ -35,7 +48,27 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'cedula_de_identidad' => 'required | unique:clientes,cedula_de_identidad',
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'numero_de_telefono' => 'required',
+            'correo_electronico' => 'required | email',
+            'fecha_de_nacimiento' => 'required | date',
+            'ubicacion' => 'required',
+        ]);
+
+        Cliente::create([
+            'cedula_de_identidad' =>  $request['cedula_de_identidad'],
+            'nombre' => $request['nombre'],
+            'apellido' => $request['apellido'],
+            'numero_de_telefono' => $request['numero_de_telefono'],
+            'correo_electronico' => $request['correo_electronico'],
+            'fecha_de_nacimiento' => $request['fecha_de_nacimiento'],
+            'ubicacion' => $request['ubicacion'],
+            'status' => 1,
+        ]);
     }
 
     /**
@@ -48,13 +81,12 @@ class ClienteController extends Controller
     {
         $query = $request['cliente'];
 
-        $clientes = $cliente->query()->where('nombre', 'like', "%{$query}%")->orWhere('cedula_de_identidad', 'LIKE', "%{$query}%")->paginate(10);
+        $clientes = $cliente->query()->where('nombre', 'like', "%{$query}%")->orWhere('cedula_de_identidad', 'LIKE', "%{$query}%")->paginate(15);
 
         $data = array(
             "code" => 200,
             "clientes" => $clientes,
         );
-
 
         return json_encode($data, true);
     }

@@ -10,44 +10,99 @@
 
     <section class="view contenedor_size">
 
-        <form action="" method="post">
-
+        <form action="{{ route('store.cliente') }}" method="post">
+            @csrf
 
             <div class="input">
                 <label for="">Cédula de Identidad:</label>
-                <input type="text" placeholder="Cédula de Identidad">
+
+                <div>
+                    <input type="number" value="{{ old('cedula_de_identidad') }}"  class="@error('cedula_de_identidad') invalid-input @enderror"
+                        name="cedula_de_identidad" placeholder="Cédula de Identidad">
+                    @error('cedula_de_identidad')
+                        <span class="error_text" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
             </div>
 
 
             <div class="input">
                 <label for="">Nombre:</label>
-                <input type="text" placeholder="Nombre">
+                <div>
+                    <input type="text" value="{{ old('nombre') }}" class="@error('nombre') invalid-input @enderror" name="nombre"
+                        placeholder="Nombre">
+                    @error('nombre')
+                        <span class="error_text" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
             </div>
 
             <div class="input">
                 <label for="">Apeliido:</label>
-                <input type="text" placeholder="Apeliido">
+                <div> <input type="text" value="{{ old('apellido') }}" class="@error('apellido') invalid-input @enderror" name="apellido"
+                        placeholder="Apeliido">
+                    @error('apellido')
+                        <span class="error_text" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
             </div>
 
             <div class="input">
                 <label for="">Número de Teléfono:</label>
-                <input type="tel" placeholder="Número de Teléfono">
+                <div> <input type="tel" value="{{ old('numero_de_telefono') }}" class="@error('numero_de_telefono') invalid-input @enderror"
+                        name="numero_de_telefono" placeholder="Número de Teléfono">
+                    @error('numero_de_telefono')
+                        <span class="error_text" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
             </div>
 
             <div class="input">
                 <label for="">Correo Electrónico:</label>
-                <input type="Email" placeholder="Correo Electrónico">
+                <div> <input type="Email" value="{{ old('correo_electronico') }}" class="@error('correo_electronico') invalid-input @enderror"
+                        name="correo_electronico" placeholder="Correo Electrónico">
+                    @error('correo_electronico')
+                        <span class="error_text" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
             </div>
 
 
             <div class="input">
                 <label for="">Fecha de Nacimiento:</label>
-                <input type="date" name="" id="">
+                <div> <input type="date" value="{{ old('fecha_de_nacimiento') }}" class="@error('fecha_de_nacimiento') invalid-input @enderror"
+                        name="fecha_de_nacimiento" id="">
+                    @error('fecha_de_nacimiento')
+                        <span class="error_text" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
+
             </div>
 
             <div class="input">
                 <label for="">Ubicación:</label>
-                <input type="text" placeholder="Ubicación">
+
+                <div>
+                    <input type="text" value="{{ old('ubicacion') }}" class="@error('ubicacion') invalid-input @enderror" name="ubicacion"
+                        placeholder="Ubicación">
+                    @error('ubicacion')
+                        <span class="error_text" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
             </div>
 
             <div class="input">

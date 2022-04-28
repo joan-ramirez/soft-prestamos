@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\Prestamo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -59,16 +60,24 @@ class PrestamoController extends Controller
             );
         } else {
 
-            /* Mesa::create([
-                'nombre' => $request['nombre'],
-                'status' => 1,
-               
-            ]);*/
+            // Verificar si la cedula le pertenece a algun cliente
+            $cliente = Cliente::where('cedula_de_identidad',  $request['cliente'])->count();
 
-            $data = array(
-                "code" => 200,
-                "mensaje" => "Prestamo registrado...",
-            );
+            if ($cliente > 0) {
+
+                $data = array(
+                    "code" => 200,
+                    "mensaje" => "Prestamo registrado...",
+                );
+            } else {
+
+                $data = array(
+                    "code" => 500,
+                    "mensaje" => [
+                        'cliente' => ['La cedula del cliente no se encuentra en el sistema.']
+                    ],
+                );
+            }
         }
 
         return json_encode($data, true);

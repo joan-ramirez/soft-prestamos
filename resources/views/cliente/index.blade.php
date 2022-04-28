@@ -16,15 +16,19 @@
                 <a href="{{ route('create.cliente') }}"><button>Crear Cliente</button></a>
             </div>
 
-            <div class="buscador">
-                <input type="search" name="" id="" placeholder="Buscar Cliente por nombre o codigo">
-                <button><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            <form action="{{ route('index.clientes') }}" method="get" class="buscador">
+
+                <input type="search" name="search" value="{{ $query }}" placeholder="Buscar Cliente por nombre o codigo">
+
+                <button type="submit">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg> 
+                    </svg>
                 </button>
-            </div>
+
+            </form>
 
             <div class="labels">
                 <div class="label_usuario">
@@ -37,100 +41,29 @@
             </div>
 
 
-            <div class="usuario">
+            @foreach ($clientes as $cliente)
+                <div class="usuario">
 
-                <div class="info">
-                    <span class="nombre_usuario">Joan ramirez</span>
-                    <span class="codigo_usuario">515151511</span>
+                    <div class="info">
+                        <span class="nombre_usuario">{{ $cliente->nombre }} {{ $cliente->apellido }}</span>
+                        <span class="codigo_usuario">{{ $cliente->cedula_de_identidad }}</span>
+                    </div>
+
+                    <div class="acciones">
+                        <button>Desactivar</button>
+                        <button>Editar</button>
+                        <button>Detalle</button>
+                        <button>Prestar</button>
+                    </div>
+
                 </div>
+            @endforeach
 
-                <div class="acciones">
-                    <button>Desactivar</button>
-                    <button>Editar</button>
-                    <button>Detalle</button>
-                    <button>Prestar</button>
-                </div>
+            {{ $clientes->links() }}
 
-            </div>
 
-            <div class="usuario">
 
-                <div class="info">
-                    <span class="nombre_usuario">Joan ramirez</span>
-                    <span class="codigo_usuario">515151511</span>
-                </div>
 
-                <div class="acciones">
-                    <button>Desactivar</button>
-                    <button>Editar</button>
-                    <button>Detalle</button>
-                    <button>Prestar</button>
-                </div>
-
-            </div>
-            <div class="usuario">
-
-                <div class="info">
-                    <span class="nombre_usuario">Joan ramirez</span>
-                    <span class="codigo_usuario">515151511</span>
-                </div>
-
-                <div class="acciones">
-                    <button>Desactivar</button>
-                    <button>Editar</button>
-                    <button>Detalle</button>
-                    <button>Prestar</button>
-                </div>
-
-            </div>
-
-            <div class="usuario">
-
-                <div class="info">
-                    <span class="nombre_usuario">Joan ramirez</span>
-                    <span class="codigo_usuario">515151511</span>
-                </div>
-
-                <div class="acciones">
-                    <button>Desactivar</button>
-                    <button>Editar</button>
-                    <button>Detalle</button>
-                    <button>Prestar</button>
-                </div>
-
-            </div>
-
-            <div class="usuario">
-
-                <div class="info">
-                    <span class="nombre_usuario">Joan ramirez</span>
-                    <span class="codigo_usuario">515151511</span>
-                </div>
-
-                <div class="acciones">
-                    <button>Desactivar</button>
-                    <button>Editar</button>
-                    <button>Detalle</button>
-                    <button>Prestar</button>
-                </div>
-
-            </div>
-            
-            <div class="usuario">
-
-                <div class="info">
-                    <span class="nombre_usuario">Joan ramirez</span>
-                    <span class="codigo_usuario">515151511</span>
-                </div>
-
-                <div class="acciones">
-                    <button>Desactivar</button>
-                    <button>Editar</button>
-                    <button>Detalle</button>
-                    <button>Prestar</button>
-                </div>
-
-            </div>
 
         </div>
 

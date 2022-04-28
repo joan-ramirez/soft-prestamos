@@ -34,7 +34,8 @@ Route::post('/guardar-prestamo', [PrestamoController::class, 'store'])->name('st
 
 
 Route::get('/crear-cliente', [ClienteController::class, 'create'])->name('create.cliente');
-Route::get('/clientes', [ClienteController::class, 'index'])->name('index.clientes');
+Route::post('/guardar-cliente', [ClienteController::class, 'store'])->name('store.cliente');
+Route::get('/clientes/{query?}', [ClienteController::class, 'index'])->name('index.clientes');
 Route::get('/buscar-cliente', [ClienteController::class, 'show'])->name('show.clientes');
 
 

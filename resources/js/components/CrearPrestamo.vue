@@ -3,26 +3,34 @@
     <div class="input">
       <label for="">Cliente</label>
       <div>
+
         <input
-          :class="this.errors[0].cliente.length ? 'invalid-input' : ''"
           type="search"
           name="cliente"
           v-model="cliente"
           @input="escribir"
           placeholder="Busca cliente por nombre o cedula de identidad"
+          :class="this.errors[0].cliente.length ? 'invalid-input' : ''"
         />
 
-        <div
+        <label for="" v-if="restul_clientes.length && cliente" style="font-size:13px;">Selecione un cliente:</label>
+        <select
+          v-model="cliente"
+          name="cliente"
           class="result_busqueda_clientes"
-          v-if="restul_clientes.length && cliente"
-        >
-          <div v-for="(cliente, index) in restul_clientes" :key="index">
-            <button type="button" class="restult_cliente">
-              <span>{{ cliente.nombre }} {{ cliente.apellido }}</span>
-              <span class="cedula">{{ cliente.cedula_de_identidad }}</span>
-            </button>
-          </div>
-        </div>
+          v-if="restul_clientes.length && cliente">
+
+          <option
+            :value="cliente.cedula_de_identidad"
+            v-for="(cliente, index) in restul_clientes"
+            :key="index">
+            {{ cliente.nombre }} {{ cliente.apellido }} -
+            {{ cliente.cedula_de_identidad }}
+          </option>
+
+        </select>
+
+
       </div>
     </div>
 
@@ -310,6 +318,7 @@ export default {
 
           // Verificacando si se encuentran nuevos errores
           if (response.data.code != 200) {
+            console.log(response.data);
             if (response.data.mensaje?.cliente) {
               this.errors[0].cliente = response.data.mensaje?.cliente;
             }
