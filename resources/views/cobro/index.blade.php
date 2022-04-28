@@ -9,9 +9,6 @@
     </div>
 
     <section class="view contenedor_size">
-        <br>
-        <h1>Aqui mostrare un calendario para mostrar los cobros del dia y a futuro</h1>
-        <br>
-
+        <calendar-component></calendar-component>
     </section>
 @endsection

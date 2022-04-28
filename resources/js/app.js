@@ -6,8 +6,14 @@
 
 require('./bootstrap');
 
+
+import 'fullcalendar/dist/fullcalendar.css';
+import FullCalendar from 'vue-full-calendar';
+
+
 window.Vue = require('vue').default;
 
+Vue.use(FullCalendar);
 
 
 /**
@@ -22,6 +28,7 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('crear-prestamo', require('./components/CrearPrestamo.vue').default);
+Vue.component('calendar-component', require('./components/CalendarComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

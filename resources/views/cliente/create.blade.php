@@ -27,7 +27,6 @@
                 </div>
             </div>
 
-
             <div class="input">
                 <label for="">Nombre:</label>
                 <div>
@@ -77,7 +76,6 @@
                 </div>
             </div>
 
-
             <div class="input">
                 <label for="">Fecha de Nacimiento:</label>
                 <div> <input type="date" value="{{ old('fecha_de_nacimiento') }}" class="@error('fecha_de_nacimiento') invalid-input @enderror"
@@ -88,7 +86,6 @@
                         </span>
                     @enderror
                 </div>
-
             </div>
 
             <div class="input">
@@ -109,8 +106,6 @@
                 <div></div>
                 <button class="btn_submit" type="submit">Crear Cliente</button>
             </div>
-
-
 
         </form>
 

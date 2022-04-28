@@ -68,7 +68,6 @@
 
             </div>
 
-
             <div class="roles">
                 <label for="">Selecciona roles:</label>
                 <div class="rols">
@@ -81,11 +80,8 @@
                             </div>
                         </label>
                     @endforeach
-
-
                 </div>
             </div>
-
 
             <div class="input">
                 <div></div>

@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\CobroController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PrestamoController;
+use App\Http\Controllers\CobroController;
+use App\Http\Controllers\DeudaController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\PrestamoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,6 @@ Route::get('/usuarios/{query?}', [UsuarioController::class, 'index'])->name('ind
 Route::get('/crear-usuario', [UsuarioController::class, 'create'])->name('create.usuario');
 Route::post('/guardar-usuario', [UsuarioController::class, 'store'])->name('store.usuario');
 
+Route::get('/deudas', [DeudaController::class, 'index'])->name('index.deuda');
+
 Route::get('/cobros', [CobroController::class, 'index'])->name('index.cobro');
-
-
