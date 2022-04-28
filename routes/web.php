@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CobroController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -42,3 +43,7 @@ Route::get('/buscar-cliente', [ClienteController::class, 'show'])->name('show.cl
 Route::get('/usuarios/{query?}', [UsuarioController::class, 'index'])->name('index.usuarios');
 Route::get('/crear-usuario', [UsuarioController::class, 'create'])->name('create.usuario');
 Route::post('/guardar-usuario', [UsuarioController::class, 'store'])->name('store.usuario');
+
+Route::get('/cobros', [CobroController::class, 'index'])->name('index.cobro');
+
+

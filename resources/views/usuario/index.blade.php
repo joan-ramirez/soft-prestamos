@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="volver contenedor_size">
         <svg onclick="location.href='{{ route('home') }}'" class="w-6 h-6" fill="none" stroke="currentColor"
             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -19,7 +18,8 @@
 
             <form action="{{ route('index.usuarios') }}" method="get" class="buscador">
 
-                <input type="search" name="search" value="{{ $query }}" placeholder="Buscar usuario por nombre o correo electronico">
+                <input type="search" name="search" value="{{ $query }}"
+                    placeholder="Buscar usuario por nombre o correo electronico">
 
                 <button type="submit">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -61,5 +61,4 @@
         </div>
 
     </section>
-
 @endsection

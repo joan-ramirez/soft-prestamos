@@ -96,10 +96,6 @@
                     </li>
                 @endguest
 
-
-
-
-
             </ul>
 
         </header>

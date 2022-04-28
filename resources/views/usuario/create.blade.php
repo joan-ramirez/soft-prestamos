@@ -74,14 +74,14 @@
                 <div class="rols">
 
                     @foreach ($roles as $rol)
-                    <label class="rol">
-                        <input type="checkbox" value="{{ $rol->id }}" name="rol">
-                        <div class="text-rol">
-                           {{ $rol->nombre }}
-                        </div>
-                    </label>
+                        <label class="rol">
+                            <input type="checkbox" value="{{ $rol->id }}" name="rol">
+                            <div class="text-rol">
+                                {{ $rol->nombre }}
+                            </div>
+                        </label>
                     @endforeach
-                
+
 
                 </div>
             </div>
