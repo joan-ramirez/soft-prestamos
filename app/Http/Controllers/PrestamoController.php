@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rol;
 use App\Models\Cliente;
 use App\Models\Prestamo;
 use Illuminate\Http\Request;
@@ -9,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class PrestamoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +22,9 @@ class PrestamoController extends Controller
      */
     public function index()
     {
+        $rol = Rol::find(1);
+        $this->authorize('rol', $rol);
+
         return view('prestamo.index');
     }
 
@@ -26,6 +35,10 @@ class PrestamoController extends Controller
      */
     public function create()
     {
+        $rol = Rol::find(1);
+        $this->authorize('rol', $rol);
+
+
         return view('prestamo.create');
     }
 
@@ -37,6 +50,10 @@ class PrestamoController extends Controller
      */
     public function store(Request $request)
     {
+        $rol = Rol::find(1);
+        $this->authorize('rol', $rol);
+
+
 
         $validator = Validator::make($request->all(), [
             'cliente' => 'required',

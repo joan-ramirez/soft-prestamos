@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rol;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +20,8 @@ class ClienteController extends Controller
      */
     public function index(Request $request, Cliente $cliente)
     {
+        $rol = Rol::find(1);
+        $this->authorize('rol', $rol);
 
         if (isset($request['search'])) {
             return redirect()->route('index.clientes', ['query' => $request['search']]);
@@ -37,6 +45,9 @@ class ClienteController extends Controller
      */
     public function create()
     {
+        $rol = Rol::find(1);
+        $this->authorize('rol', $rol);
+
         return view('cliente.create');
     }
 
@@ -48,6 +59,9 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+        $rol = Rol::find(1);
+        $this->authorize('rol', $rol);
+
 
         $request->validate([
             'cedula_de_identidad' => 'required | unique:clientes,cedula_de_identidad',
@@ -78,6 +92,10 @@ class ClienteController extends Controller
      */
     public function show(Request $request, Cliente $cliente)
     {
+        $rol = Rol::find(1);
+        $this->authorize('rol', $rol);
+
+
         $query = $request['cliente'];
 
         $clientes = $cliente->query()->where('nombre', 'like', "%{$query}%")->orWhere('cedula_de_identidad', 'LIKE', "%{$query}%")->paginate(15);

@@ -16,6 +16,10 @@ class UsuarioController extends Controller
      */
     public function index(User $user, Request $request)
     {
+
+        $rol = Rol::find(1);
+        $this->authorize('rol', $rol);
+
         if (isset($request['search'])) {
             return redirect()->route('index.usuarios', ['query' => $request['search']]);
         }
@@ -39,9 +43,12 @@ class UsuarioController extends Controller
     public function create()
     {
 
+        $rol = Rol::find(1);
+        $this->authorize('rol', $rol);
+
         $roles = Rol::all();
 
-        return view('usuario.create',compact('roles'));
+        return view('usuario.create', compact('roles'));
     }
 
     /**
@@ -52,6 +59,9 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
+        $rol = Rol::find(1);
+        $this->authorize('rol', $rol);
+
         $request->validate([
             'nombre' => 'required',
             'apellido' => 'required',

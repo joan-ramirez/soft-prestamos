@@ -76,7 +76,9 @@
                         <label class="rol">
                             <input type="checkbox" value="{{ $rol->id }}" name="rol">
                             <div class="text-rol">
-                                {{ $rol->nombre }}
+                                <strong style="font-size: 13px;"> {{ $rol->nombre }}</strong>:
+                                <br>
+                                <span style="font-size: 13px;">{{ $rol->descripcion }}</span>
                             </div>
                         </label>
                     @endforeach

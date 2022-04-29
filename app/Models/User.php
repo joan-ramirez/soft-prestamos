@@ -41,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Obtener los roles/permisos del usuario autenticado.
+    public function roles()
+    {
+        return $this->hasMany(UserRol::class, 'id_user');
+    }
 }

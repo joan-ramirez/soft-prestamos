@@ -15,6 +15,7 @@
             </div>
         </div>
         
+     
         <div class="navegacion" onclick="location.href='{{ route('index.cobro') }}'">
             <div>
                 <i class="fa-solid fa-calendar-days"></i>
