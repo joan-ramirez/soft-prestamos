@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rol;
 use App\Models\User;
+use App\Models\UserRol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,7 +31,7 @@ class UsuarioController extends Controller
             $query = "";
         }
 
-        $usuarios = $user->query()->where('name', 'like', "%{$query}%")->orWhere('email', 'LIKE', "%{$query}%")->paginate(15);
+        $usuarios = $user->query()->where('name', 'like', "%{$query}%")->orWhere('email', 'LIKE', "%{$query}%")->paginate(10);
 
         return view('usuario.index', compact('usuarios', 'query'));
     }
@@ -42,7 +43,6 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-
         $rol = Rol::find(1);
         $this->authorize('rol', $rol);
 
@@ -62,6 +62,7 @@ class UsuarioController extends Controller
         $rol = Rol::find(1);
         $this->authorize('rol', $rol);
 
+
         $request->validate([
             'nombre' => 'required',
             'apellido' => 'required',
@@ -69,12 +70,33 @@ class UsuarioController extends Controller
             'password' => 'required',
         ]);
 
-        User::create([
+        $usuario = User::create([
             'name' => $request['nombre'] . ' ' .  $request['apellido'],
             'email' => $request['correo_electronico'],
             'password' => Hash::make($request['password']),
 
         ]);
+
+        // Virificar los roles e insertarlo
+        if (isset($request['rol1'])) {
+            UserRol::create([
+                'id_rol' => 1,
+                'id_user' => $usuario->id
+            ]);
+        }
+
+        if (isset($request['rol2'])) {
+            UserRol::create([
+                'id_rol' => 2,
+                'id_user' => $usuario->id
+            ]);
+        }
+        if (isset($request['rol3'])) {
+            UserRol::create([
+                'id_rol' => 3,
+                'id_user' => $usuario->id
+            ]);
+        }
     }
 
     /**

@@ -98,7 +98,7 @@ class ClienteController extends Controller
 
         $query = $request['cliente'];
 
-        $clientes = $cliente->query()->where('nombre', 'like', "%{$query}%")->orWhere('cedula_de_identidad', 'LIKE', "%{$query}%")->paginate(15);
+        $clientes = $cliente->query()->where('nombre', 'like', "%{$query}%")->orWhere('cedula_de_identidad', 'LIKE', "%{$query}%")->paginate(10);
 
         $data = array(
             "code" => 200,

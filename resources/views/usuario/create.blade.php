@@ -74,9 +74,9 @@
 
                     @foreach ($roles as $rol)
                         <label class="rol">
-                            <input type="checkbox" value="{{ $rol->id }}" name="rol">
+                            <input type="checkbox" value="{{ $rol->id }}" name="rol{{ $rol->id }}">
                             <div class="text-rol">
-                                <strong style="font-size: 13px;"> {{ $rol->nombre }}</strong>:
+                                <strong style="font-size: 13px;">{{ $rol->nombre }}</strong>:
                                 <br>
                                 <span style="font-size: 13px;">{{ $rol->descripcion }}</span>
                             </div>
