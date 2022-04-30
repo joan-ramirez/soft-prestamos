@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rol;
 use App\Models\Cliente;
+use App\Models\Prestamo;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -20,6 +21,11 @@ class ClienteController extends Controller
      */
     public function index(Request $request, Cliente $cliente)
     {
+
+
+
+
+
         $rol = Rol::find(2);
         $this->authorize('rol', $rol);
 
@@ -84,12 +90,28 @@ class ClienteController extends Controller
         ]);
     }
 
+
+    public function datails(Request $request, Cliente $cliente)
+    {
+
+        $get_cliente = $cliente->find($request['id']);
+
+        if($get_cliente){
+            return view('cliente.details',compact('get_cliente'));
+        }
+    
+         return redirect()->route('index.clientes');
+
+    }
+
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
+
     public function show(Request $request, Cliente $cliente)
     {
         $rol = Rol::find(2);

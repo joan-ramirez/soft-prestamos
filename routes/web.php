@@ -31,7 +31,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
-Route::get('/prestamos', [PrestamoController::class, 'index'])->name('index.prestamos');
+Route::get('/prestamos/{query?}', [PrestamoController::class, 'index'])->name('index.prestamos');
 Route::get('/crear-prestamo', [PrestamoController::class, 'create'])->name('create.prestamo');
 Route::post('/guardar-prestamo', [PrestamoController::class, 'store'])->name('store.prestamo');
 
@@ -40,6 +40,7 @@ Route::get('/crear-cliente', [ClienteController::class, 'create'])->name('create
 Route::post('/guardar-cliente', [ClienteController::class, 'store'])->name('store.cliente');
 Route::get('/clientes/{query?}', [ClienteController::class, 'index'])->name('index.clientes');
 Route::get('/buscar-cliente', [ClienteController::class, 'show'])->name('show.clientes');
+Route::get('/detalles/{id}', [ClienteController::class, 'datails'])->name('datails.clientes');
 
 
 Route::get('/usuarios/{query?}', [UsuarioController::class, 'index'])->name('index.usuarios');

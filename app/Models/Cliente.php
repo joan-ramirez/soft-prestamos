@@ -18,4 +18,10 @@ class Cliente extends Model
         'ubicacion',
         'status',
     ];
+
+
+    public function prestamos()
+    {
+        return $this->hasMany(Prestamo::class,'cedula_de_identidad_cliente', 'cedula_de_identidad');
+    }
 }

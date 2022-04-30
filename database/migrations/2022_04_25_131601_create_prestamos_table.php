@@ -32,7 +32,7 @@ return new class extends Migration
             $table->double('importe_de_credito', 8, 2);
             $table->double('tasa_de_interes', 8, 2);
             $table->integer('numero_de_cuotas');
-            $table->double('importe_de_cuotas', 8, 2);
+            $table->double('importe_de_cuota', 8, 2);
             $table->double('total_a_pagar', 8, 2);
             $table->double('interes_generado', 8, 2);
             $table->date('fecha_de_inicio');

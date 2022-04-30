@@ -18,7 +18,8 @@
 
             <form action="{{ route('index.clientes') }}" method="get" class="buscador">
 
-                <input type="search" name="search" value="{{ $query }}" placeholder="Buscar Cliente por nombre o codigo">
+                <input type="search" name="search" value="{{ $query }}"
+                    placeholder="Buscar Cliente por nombre o codigo">
 
                 <button type="submit">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -30,40 +31,43 @@
 
             </form>
 
-            <div class="labels">
-                <div class="label_usuario">
-                    <span>Cliente</span>
-                </div>
 
-                <div class="label_acciones">
-                    <span>Acciones</span>
-                </div>
-            </div>
-
-
-            @foreach ($clientes as $cliente)
-                <div class="usuario">
-
-                    <div class="info">
-                        <span class="nombre_usuario">{{ $cliente->nombre }}</span>
-                        <span class="codigo_usuario">{{ $cliente->cedula_de_identidad }}</span>
+            @if (count($clientes))
+                <div class="labels">
+                    <div class="label_usuario">
+                        <span>Cliente</span>
                     </div>
 
-                    <div class="acciones">
-                        <button>Desactivar</button>
-                        <button>Editar</button>
-                        <button>Detalle</button>
-                        <button>Prestar</button>
+                    <div class="label_acciones">
+                        <span>Acciones</span>
                     </div>
-
                 </div>
-            @endforeach
 
-            {{ $clientes->links() }}
+                @foreach ($clientes as $cliente)
+                    <div class="usuario">
 
+                        <div class="info">
+                            <span class="nombre_usuario">{{ $cliente->nombre }}</span>
+                            <span class="codigo_usuario">{{ $cliente->cedula_de_identidad }}</span>
+                        </div>
 
+                        <div class="acciones">
+                            <button>Desactivar</button>
+                            <button>Editar</button>
+                            <button onclick="location.href='{{ route('datails.clientes',['id' => $cliente->id]) }}'">Detalle</button>
+                            <button>Prestar</button>
+                        </div>
 
+                    </div>
+                @endforeach
 
+                {{ $clientes->links() }}
+            @else
+                <!--Me falta esto-->
+                <div class="sin-resultado">
+                    Sin resultado
+                </div>
+            @endif
 
         </div>
 

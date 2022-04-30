@@ -30,33 +30,39 @@
                 </button>
             </form>
 
-            <div class="labels">
-                <div class="label_usuario">
-                    <span>Usuario</span>
-                </div>
-
-                <div class="label_acciones">
-                    <span>Acciones</span>
-                </div>
-            </div>
-
-            @foreach ($usuarios as $usuario)
-                <div class="usuario">
-
-                    <div class="info">
-                        <span class="nombre_usuario">{{ $usuario->name }}</span>
-                        <span class="codigo_usuario">{{ $usuario->email }}</span>
+            @if (count($usuarios))
+                <div class="labels">
+                    <div class="label_usuario">
+                        <span>Usuario</span>
                     </div>
 
-                    <div class="acciones">
-                        <button>Desactivar</button>
-                        <button>Detalle</button>
+                    <div class="label_acciones">
+                        <span>Acciones</span>
                     </div>
-
                 </div>
-            @endforeach
+                @foreach ($usuarios as $usuario)
+                    <div class="usuario">
 
-            {{ $usuarios->links() }}
+                        <div class="info">
+                            <span class="nombre_usuario">{{ $usuario->name }}</span>
+                            <span class="codigo_usuario">{{ $usuario->email }}</span>
+                        </div>
+
+                        <div class="acciones">
+                            <button>Desactivar</button>
+                            <button>Detalle</button>
+                        </div>
+
+                    </div>
+                @endforeach
+
+                {{ $usuarios->links() }}
+            @else
+                <!--Me falta esto-->
+                <div class="sin-resultado">
+                    Sin resultado
+                </div>
+            @endif
 
         </div>
 

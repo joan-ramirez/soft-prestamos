@@ -300,11 +300,26 @@ body {
     height: 19px;
     cursor: pointer;
 }
-
+.sin-resultado{
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+}
 .view {
     padding-bottom: 0px;
     background-color: white;
     box-shadow: 0px 0px 10px rgba(27, 27, 27, 0.2);
+}
+.view .detalles_cliente {
+    padding: 50px;
+}
+.view .detalles_cliente div{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 15px;
 }
 .view .links {
     display: flex;

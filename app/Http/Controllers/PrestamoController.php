@@ -20,12 +20,24 @@ class PrestamoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $rol = Rol::find(1);
         $this->authorize('rol', $rol);
 
-        return view('prestamo.index');
+        if (isset($request['search'])) {
+            return redirect()->route('index.prestamos', ['query' => $request['search']]);
+        }
+
+        $query = $request['query'];
+
+        if (!$query) {
+            $query = "";
+        }
+
+        $prestamos = Prestamo::query()->where('cedula_de_identidad_cliente', 'like', "%{$query}%")->paginate(10);
+
+        return view('prestamo.index', compact('prestamos','query'));
     }
 
     /**
@@ -78,11 +90,24 @@ class PrestamoController extends Controller
             $cliente = Cliente::where('cedula_de_identidad',  $request['cliente'])->count();
 
             if ($cliente > 0) {
+              
+                Prestamo::create([
+                    'cedula_de_identidad_cliente' => $request['cliente'],
+                    'importe_de_credito' => $request['importe_de_credito'], 
+                    'tasa_de_interes' => $request['tasa_de_interes'], 
+                    'numero_de_cuotas' => $request['numero_de_cuotas'],
+                    'importe_de_cuota' => $request['importe_de_cuota'],
+                    'total_a_pagar' => $request['total_a_pagar'], 
+                    'interes_generado' =>  $request['interes_generado'],
+                    'fecha_de_inicio' => $request['fecha_de_inicio'], 
+                    'status' => 1
+                ]);
 
                 $data = array(
                     "code" => 200,
                     "mensaje" => "Prestamo registrado...",
                 );
+
             } else {
 
                 $data = array(
