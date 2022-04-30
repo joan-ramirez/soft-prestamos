@@ -38,7 +38,6 @@ class PrestamoController extends Controller
         $rol = Rol::find(1);
         $this->authorize('rol', $rol);
 
-
         return view('prestamo.create');
     }
 
@@ -52,8 +51,6 @@ class PrestamoController extends Controller
     {
         $rol = Rol::find(1);
         $this->authorize('rol', $rol);
-
-
 
         $validator = Validator::make($request->all(), [
             'cliente' => 'required',

@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +23,7 @@ class UsuarioController extends Controller
     public function index(User $user, Request $request)
     {
 
-        $rol = Rol::find(1);
+        $rol = Rol::find(2);
         $this->authorize('rol', $rol);
 
         if (isset($request['search'])) {
@@ -43,7 +48,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        $rol = Rol::find(1);
+        $rol = Rol::find(2);
         $this->authorize('rol', $rol);
 
         $roles = Rol::all();
@@ -59,7 +64,7 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $rol = Rol::find(1);
+        $rol = Rol::find(2);
         $this->authorize('rol', $rol);
 
 

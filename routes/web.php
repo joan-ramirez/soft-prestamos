@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CobroController;
 use App\Http\Controllers\DeudaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PrestamoController;
 
@@ -48,3 +49,7 @@ Route::post('/guardar-usuario', [UsuarioController::class, 'store'])->name('stor
 Route::get('/deudas', [DeudaController::class, 'index'])->name('index.deuda');
 
 Route::get('/cobros', [CobroController::class, 'index'])->name('index.cobro');
+
+
+Route::get('/configuracion', [ConfiguracionController::class, 'index'])->name('index.configuracion');
+Route::put('/cambiar-password', [ConfiguracionController::class, 'cambiar_password'])->name('cambiar_password.configuracion');

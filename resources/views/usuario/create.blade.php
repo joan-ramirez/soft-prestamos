@@ -30,7 +30,7 @@
 
             <div class="input">
                 <label for="">Apellido:</label>
-                <div> <input type="text" value="{{ old('apellido') }}" name="apellido" placeholder="Apellido">
+                <div> <input type="text" value="{{ old('apellido') }}" class="@error('apellido') invalid-input @enderror"  name="apellido" placeholder="Apellido">
 
                     @error('apellido')
                         <span class="error_text" role="alert">
@@ -43,7 +43,7 @@
 
             <div class="input">
                 <label for="">Correo Electrónico:</label>
-                <div><input type="email" value="{{ old('correo_electronico') }}" name="correo_electronico"
+                <div><input type="email" class="@error('correo_electronico') invalid-input @enderror"  value="{{ old('correo_electronico') }}" name="correo_electronico"
                         placeholder="Correo Electrónico">
 
                     @error('correo_electronico')
@@ -56,7 +56,7 @@
 
             <div class="input">
                 <label for="">Contraseña de acceso:</label>
-                <div><input type="password" name="password" placeholder="password" placeholder="Contraseña de acceso">
+                <div><input type="password" class="@error('password') invalid-input @enderror" name="password" placeholder="password" placeholder="Contraseña de acceso">
 
 
                     @error('password')

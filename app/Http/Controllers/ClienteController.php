@@ -20,7 +20,7 @@ class ClienteController extends Controller
      */
     public function index(Request $request, Cliente $cliente)
     {
-        $rol = Rol::find(1);
+        $rol = Rol::find(2);
         $this->authorize('rol', $rol);
 
         if (isset($request['search'])) {
@@ -45,7 +45,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        $rol = Rol::find(1);
+        $rol = Rol::find(2);
         $this->authorize('rol', $rol);
 
         return view('cliente.create');
@@ -59,7 +59,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $rol = Rol::find(1);
+        $rol = Rol::find(2);
         $this->authorize('rol', $rol);
 
 
@@ -92,7 +92,7 @@ class ClienteController extends Controller
      */
     public function show(Request $request, Cliente $cliente)
     {
-        $rol = Rol::find(1);
+        $rol = Rol::find(2);
         $this->authorize('rol', $rol);
 
 
