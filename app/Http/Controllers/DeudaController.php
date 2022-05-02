@@ -15,7 +15,20 @@ class DeudaController extends Controller
 
     public function index()
     {
-        $eventList = Deuda::get(['title', 'start']);
-        return response()->json(["events" => $eventList]);
+        $events = Deuda::get(['title', 'start']);
+
+        $eventList = array();
+
+        foreach ($events as $even) {
+            array_push($eventList, (object) [
+                'start' => $even['start'],
+                'title' => $even['title'],
+                'url' => route('home')
+            ]);
+        }
+
+        return json_encode($eventList, true);
+
+        // return response()->json(["events" => $eventList]);
     }
 }

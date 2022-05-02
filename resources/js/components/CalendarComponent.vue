@@ -14,7 +14,7 @@ export default {
     axios
       .get("http://localhost/soft-prestamos/public/deudas")
       .then((response) => {
-        this.events.push(response.data.events);
+        this.events.push(response.data);
       });
 
     console.log("Component mounted.");
