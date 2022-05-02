@@ -5376,18 +5376,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      events: [{
-        title: "Joan ramirez",
-        start: "2022-04-26 07:00",
-        url: "#"
-      }, {
-        title: "Randy ramirez",
-        start: "2022-06-26 07:00",
-        url: "#"
-      }]
+      events: []
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
+    axios.get("http://localhost/soft-prestamos/public/deudas").then(function (response) {
+      _this.events.push(response.data.events);
+    });
     console.log("Component mounted.");
   }
 });
@@ -81502,7 +81499,11 @@ var render = function () {
   return _c(
     "div",
     { staticClass: "container" },
-    [_c("full-calendar", { attrs: { events: _vm.events, editable: false } })],
+    [
+      _c("full-calendar", {
+        attrs: { events: _vm.events[0], editable: false },
+      }),
+    ],
     1
   )
 }
