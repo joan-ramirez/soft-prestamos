@@ -46,6 +46,7 @@ Route::get('/detalles/{id}', [ClienteController::class, 'datails'])->name('datai
 Route::get('/usuarios/{query?}', [UsuarioController::class, 'index'])->name('index.usuarios');
 Route::get('/crear-usuario', [UsuarioController::class, 'create'])->name('create.usuario');
 Route::post('/guardar-usuario', [UsuarioController::class, 'store'])->name('store.usuario');
+Route::get('/datails/{user}', [UsuarioController::class, 'datails'])->name('datails.usuarios');
 
 Route::get('/deudas', [DeudaController::class, 'index'])->name('index.deuda');
 

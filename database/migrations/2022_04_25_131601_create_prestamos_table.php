@@ -29,6 +29,7 @@ return new class extends Migration
         Schema::create('prestamos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('cedula_de_identidad_cliente')->references('cedula_de_identidad')->on('clientes')->comment('La cedula de identidad del cliente que cogio el prestamo');
+            $table->string('modalidad');
             $table->double('importe_de_credito', 8, 2);
             $table->double('tasa_de_interes', 8, 2);
             $table->integer('numero_de_cuotas');

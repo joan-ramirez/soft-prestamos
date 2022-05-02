@@ -210,11 +210,18 @@
 
 <script>
 import VueSimpleAlert from "vue-simple-alert";
+import moment from "moment";
 
 Vue.use(VueSimpleAlert);
 
 export default {
-  mounted() {},
+  mounted() {
+    let urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has("cliente")) {
+      this.cliente = urlParams.get("cliente");
+    }
+  },
 
   data() {
     return {
@@ -227,7 +234,7 @@ export default {
       importe_de_cuota: "",
       total_a_pagar: "",
       interes_generado: "",
-      fecha_de_inicio: new Date().toISOString().split("T")[0],
+      fecha_de_inicio: "",
 
       errors: [
         {
@@ -261,8 +268,23 @@ export default {
           })
           .then((response) => {
             this.restul_clientes = response.data.clientes.data;
-            console.log(response.data.clientes.data);
+            // console.log(response.data.clientes.data);
           });
+      }
+
+      if (e.target.name === "modalidad") {
+        if (e.target.value === "") {
+          this.fecha_de_inicio = null;
+        }
+        if (e.target.value === "dia") {
+          this.fecha_de_inicio = moment().add(1, "days").format("yyyy-MM-DD");
+        }
+        if (e.target.value === "semanal") {
+          this.fecha_de_inicio = moment().add(1, "weeks").format("yyyy-MM-DD");
+        }
+        if (e.target.value === "mensual") {
+          this.fecha_de_inicio = moment().add(1, "months").format("yyyy-MM-DD");
+        }
       }
 
       if (

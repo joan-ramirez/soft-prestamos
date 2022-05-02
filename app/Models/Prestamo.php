@@ -11,6 +11,7 @@ class Prestamo extends Model
 
     protected $fillable = [
         'cedula_de_identidad_cliente',
+        'modalidad',
         'importe_de_credito',
         'tasa_de_interes',
         'numero_de_cuotas',
@@ -21,7 +22,7 @@ class Prestamo extends Model
         'status'
     ];
 
-    // Obtener todos los clientes que tiene un prestamos
+    
     public function cliente()
     {
         return $this->hasOne(Cliente::class,'cedula_de_identidad', 'cedula_de_identidad_cliente');

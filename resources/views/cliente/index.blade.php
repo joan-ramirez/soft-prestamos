@@ -52,10 +52,16 @@
                         </div>
 
                         <div class="acciones">
-                            <button>Desactivar</button>
-                            <button>Editar</button>
-                            <button onclick="location.href='{{ route('datails.clientes',['id' => $cliente->id]) }}'">Detalle</button>
-                            <button>Prestar</button>
+                            <button>Eliminar</button>
+
+                            <button onclick="location.href='{{ route('datails.clientes', ['id' => $cliente->id]) }}'">
+                                Detalles
+                            </button>
+
+                            <button
+                                onclick="location.href='{{ route('create.prestamo', ['cliente' => $cliente->cedula_de_identidad]) }}'">
+                                Prestar
+                            </button>
                         </div>
 
                     </div>

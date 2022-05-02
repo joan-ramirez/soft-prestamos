@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('deudas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_prestamo')->references('id')->on('prestamos')->comment('El id del prestamo que le pertenece cierta deuda');
             $table->string('title');
             $table->date('start');
+            $table->date('fecha_vencimiento');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

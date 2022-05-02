@@ -49,8 +49,9 @@
                         </div>
 
                         <div class="acciones">
-                            <button>Desactivar</button>
-                            <button>Detalle</button>
+                            <button>Eliminar</button>
+                            <button
+                                onclick="location.href='{{ route('datails.usuarios', ['user' => $usuario->id]) }}'">Detalles</button>
                         </div>
 
                     </div>

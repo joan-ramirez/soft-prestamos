@@ -5406,6 +5406,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-simple-alert */ "./node_modules/vue-simple-alert/lib/index.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -5617,9 +5619,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    var urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has("cliente")) {
+      this.cliente = urlParams.get("cliente");
+    }
+  },
   data: function data() {
     return {
       restul_clientes: [],
@@ -5631,7 +5640,7 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
       importe_de_cuota: "",
       total_a_pagar: "",
       interes_generado: "",
-      fecha_de_inicio: new Date().toISOString().split("T")[0],
+      fecha_de_inicio: "",
       errors: [{
         cliente: [],
         importe_de_credito: [],
@@ -5660,9 +5669,26 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
             cliente: this.cliente
           }
         }).then(function (response) {
-          _this.restul_clientes = response.data.clientes.data;
-          console.log(response.data.clientes.data);
+          _this.restul_clientes = response.data.clientes.data; // console.log(response.data.clientes.data);
         });
+      }
+
+      if (e.target.name === "modalidad") {
+        if (e.target.value === "") {
+          this.fecha_de_inicio = null;
+        }
+
+        if (e.target.value === "dia") {
+          this.fecha_de_inicio = moment__WEBPACK_IMPORTED_MODULE_1___default()().add(1, "days").format("yyyy-MM-DD");
+        }
+
+        if (e.target.value === "semanal") {
+          this.fecha_de_inicio = moment__WEBPACK_IMPORTED_MODULE_1___default()().add(1, "weeks").format("yyyy-MM-DD");
+        }
+
+        if (e.target.value === "mensual") {
+          this.fecha_de_inicio = moment__WEBPACK_IMPORTED_MODULE_1___default()().add(1, "months").format("yyyy-MM-DD");
+        }
       }
 
       if (e.target.name === "importe_de_credito" || e.target.name === "tasa_de_interes" || e.target.name === "numero_de_cuotas") {

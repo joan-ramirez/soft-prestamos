@@ -50,7 +50,7 @@
 
                         <div class="acciones">
                             <button>Desactivar</button>
-                            <button>Detalle</button>
+                            <button>Detalles</button>
                         </div>
 
                     </div>

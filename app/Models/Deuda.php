@@ -10,9 +10,10 @@ class Deuda extends Model
     use HasFactory;
 
     protected $fillable = [
-        'event_name',
-        'event_start',
-        'event_end'
+        'id_prestamo',
+        'title',
+        'start',
+        'fecha_vencimiento',
+        'status'
     ];
-    
 }

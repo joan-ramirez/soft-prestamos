@@ -104,16 +104,19 @@ class UsuarioController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $User
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $User)
+
+    public function datails(User $user)
     {
-        //
+
+        if ($user) {
+            return view('usuario.details', compact('user'));
+        }
+
+        return redirect()->route('index.usuarios');
+
     }
+
+
 
     /**
      * Show the form for editing the specified resource.

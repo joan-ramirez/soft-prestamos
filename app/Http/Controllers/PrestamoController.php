@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Rol;
+use App\Models\Deuda;
 use App\Models\Cliente;
 use App\Models\Prestamo;
 use Illuminate\Http\Request;
@@ -37,7 +39,7 @@ class PrestamoController extends Controller
 
         $prestamos = Prestamo::query()->where('cedula_de_identidad_cliente', 'like', "%{$query}%")->paginate(10);
 
-        return view('prestamo.index', compact('prestamos','query'));
+        return view('prestamo.index', compact('prestamos', 'query'));
     }
 
     /**
@@ -90,24 +92,70 @@ class PrestamoController extends Controller
             $cliente = Cliente::where('cedula_de_identidad',  $request['cliente'])->count();
 
             if ($cliente > 0) {
-              
-                Prestamo::create([
+
+                //Crear un prestamo
+                $prestamo = Prestamo::create([
                     'cedula_de_identidad_cliente' => $request['cliente'],
-                    'importe_de_credito' => $request['importe_de_credito'], 
-                    'tasa_de_interes' => $request['tasa_de_interes'], 
+                    'modalidad' => $request['modalidad'],
+                    'importe_de_credito' => $request['importe_de_credito'],
+                    'tasa_de_interes' => $request['tasa_de_interes'],
                     'numero_de_cuotas' => $request['numero_de_cuotas'],
                     'importe_de_cuota' => $request['importe_de_cuota'],
-                    'total_a_pagar' => $request['total_a_pagar'], 
+                    'total_a_pagar' => $request['total_a_pagar'],
                     'interes_generado' =>  $request['interes_generado'],
-                    'fecha_de_inicio' => $request['fecha_de_inicio'], 
+                    'fecha_de_inicio' => $request['fecha_de_inicio'],
                     'status' => 1
                 ]);
+
+                //Crear las deudas del prestamo modalidad dia
+                if ($request['modalidad'] === "dia") {
+                    for ($i = 0; $i < $request['numero_de_cuotas']; $i++) {
+                        $increment_dia = 0 + $i;
+
+                        Deuda::create([
+                            'id_prestamo' => $prestamo->id,
+                            'title' => "Ok",
+                            'start' =>  Carbon::parse($request['fecha_de_inicio'])->addDays($increment_dia),
+                            'fecha_vencimiento' => "2022-04-26",
+                            'status' => 0
+                        ]);
+                    }
+                }
+
+                //Crear las deudas del prestamo modalidad semanal
+                if ($request['modalidad'] === "semanal") {
+                    for ($i = 0; $i < $request['numero_de_cuotas']; $i++) {
+                        $increment_semana = 0 + $i;
+
+                        Deuda::create([
+                            'id_prestamo' => $prestamo->id,
+                            'title' => "Ok",
+                            'start' =>  Carbon::parse($request['fecha_de_inicio'])->addWeeks($increment_semana),
+                            'fecha_vencimiento' => "2022-04-26",
+                            'status' => 0
+                        ]);
+                    }
+                }
+
+                //Crear las deudas del prestamo modalidad mensual
+                if ($request['modalidad'] === "mensual") {
+                    for ($i = 0; $i < $request['numero_de_cuotas']; $i++) {
+                        $increment_mensual = 0 + $i;
+
+                        Deuda::create([
+                            'id_prestamo' => $prestamo->id,
+                            'title' => "Ok",
+                            'start' =>  Carbon::parse($request['fecha_de_inicio'])->addMonths($increment_mensual),
+                            'fecha_vencimiento' => "2022-04-26",
+                            'status' => 0
+                        ]);
+                    }
+                }
 
                 $data = array(
                     "code" => 200,
                     "mensaje" => "Prestamo registrado...",
                 );
-
             } else {
 
                 $data = array(

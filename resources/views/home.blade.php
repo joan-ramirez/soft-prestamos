@@ -3,7 +3,7 @@
 @section('content')
     <div class="bienvenida contenedor_size">
         <h1>Buenos dias, {{ Auth::user()->name }}</h1>
-        <span class="fecha">Hoy es Lunes, 5 Abrir 2022 10:38:40 Horas</span>
+        <span class="fecha">Hoy es {{ $fecha_actual }}  Horas</span>
     </div>
 
     <section class="navegaciones contenedor_size">
