@@ -50,7 +50,8 @@ Route::get('/datails/{user}', [UsuarioController::class, 'datails'])->name('data
 
 Route::get('/deudas', [DeudaController::class, 'index'])->name('index.deuda');
 
-Route::get('/cobros', [CobroController::class, 'index'])->name('index.cobro');
+Route::get('/calendario-de-cobros', [CobroController::class, 'index'])->name('index.cobro');
+Route::get('/cobro/{deuda}', [CobroController::class, 'show'])->name('show.cobro');
 
 
 Route::get('/configuracion', [ConfiguracionController::class, 'index'])->name('index.configuracion');

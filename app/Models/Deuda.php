@@ -16,4 +16,11 @@ class Deuda extends Model
         'fecha_vencimiento',
         'status'
     ];
+
+    // Obtener el prestamo de la deuda
+    public function prestamo()
+    {
+        return $this->hasOne(Prestamo::class, 'id','id_prestamo');
+    }
+
 }

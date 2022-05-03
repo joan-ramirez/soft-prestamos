@@ -86,7 +86,7 @@ body {
     width: 325px;
     overflow: auto;
     border: solid 1px rgb(205, 205, 205);
-
+    z-index: 9;
     display: none;
 }
 
@@ -351,6 +351,32 @@ body {
     color: #e74c3c;
     font-size: 13.5px;
 }
+
+/*formulario factura couta*/
+.view .formulario_factura_couta h2{
+    font-weight: 500;
+    font-size: 22px;
+}
+.view .formulario_factura_couta strong{
+    font-weight: 500;
+    font-size: 16px;
+}
+.view .formulario_factura_couta p{ 
+    font-size: 15px;
+}
+.view .formulario_factura_couta button{
+    cursor: pointer;
+    border: none;
+    background-color: #130f40;
+    padding: 11px;
+    font-size: 15px;
+    padding-right: 20px;
+    padding-left: 20px;
+    color: white;
+    margin-top: 10px;
+} 
+/*END formulario factura couta*/
+
 
 .view form {
     max-width: 700px;

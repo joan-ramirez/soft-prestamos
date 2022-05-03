@@ -12,10 +12,9 @@ class DeudaController extends Controller
         $this->middleware('auth');
     }
 
-
     public function index()
     {
-        $events = Deuda::get(['title', 'start']);
+        $events = Deuda::get(['id','title', 'start']);
 
         $eventList = array();
 
@@ -23,7 +22,7 @@ class DeudaController extends Controller
             array_push($eventList, (object) [
                 'start' => $even['start'],
                 'title' => $even['title'],
-                'url' => route('home')
+                'url' => route('show.cobro',['deuda' => $even['id']])
             ]);
         }
 
@@ -31,4 +30,5 @@ class DeudaController extends Controller
 
         // return response()->json(["events" => $eventList]);
     }
+
 }
