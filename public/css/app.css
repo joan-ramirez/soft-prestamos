@@ -28,7 +28,7 @@ body {
 
 .contenedor {
     background-color: var(--color-principal);
-    height: 365px;
+    height: 395px;
     display: grid;
     grid-template-rows: auto auto 1fr 1fr;
 }
@@ -76,7 +76,18 @@ body {
     width: 100%;
     margin-bottom: 20px;
 }
+
+.select-filter-charts{
+    width: 100%;
+    height: 30px;
+    font-size: 18px;
+    outline: none;
+    text-align: center;
+    border: none;
+}
 /*END charts*/
+
+
 
 /*NOTIFICACIONES*/
 .contenedor header ul .icono_notificacion svg {

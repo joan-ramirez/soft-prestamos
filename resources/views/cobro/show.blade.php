@@ -22,7 +22,7 @@
                 <p><strong>Cuotas faltante:</strong> 3</p>
                 <p><strong>Fecha de pago:</strong> {{ $deuda->start }}</p>
 
-                <button type="submit"> Marcar cuota como pagada e imprimir</button>
+                <button type="submit"> Marcar cuota como pagada</button>
             </form>
 
         

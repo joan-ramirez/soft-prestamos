@@ -7,6 +7,7 @@ use App\Http\Controllers\CobroController;
 use App\Http\Controllers\DeudaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\EstadisticaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PrestamoController;
 
@@ -56,3 +57,7 @@ Route::get('/cobro/{deuda}', [CobroController::class, 'show'])->name('show.cobro
 
 Route::get('/configuracion', [ConfiguracionController::class, 'index'])->name('index.configuracion');
 Route::put('/cambiar-password', [ConfiguracionController::class, 'cambiar_password'])->name('cambiar_password.configuracion');
+
+
+
+Route::get('/estadistica', [EstadisticaController::class, 'show'])->name('show.estadistica');

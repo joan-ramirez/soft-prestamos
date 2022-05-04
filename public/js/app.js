@@ -5407,19 +5407,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       // Array will be automatically processed with visualization.arrayToDataTable function
-      chartData: [['Year', 'Sales', 'Expenses', 'Profit'], ['2014', 1000, 400, 200]],
+      chartData: [],
       chartOptions: {
         chart: {
-          title: 'Company Performance',
-          subtitle: 'Sales, Expenses, and Profit: 2014-2017'
+          title: "Company Performance",
+          subtitle: "Sales, Expenses, and Profit: 2014-2017"
         }
       }
     };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get("http://localhost/soft-prestamos/public/estadistica").then(function (response) {
+      console.log(response.data);
+
+      _this.chartData.push(["Titulo", "Prestado", "Cobrado", "Pendiente"], response.data);
+    });
+    console.log("Component mounted.");
   }
 });
 
@@ -81673,16 +81694,41 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("GChart", {
-    staticClass: "charts-vue",
-    attrs: {
-      type: "ColumnChart",
-      data: _vm.chartData,
-      options: _vm.chartOptions,
-    },
-  })
+  return _vm.chartData
+    ? _c(
+        "div",
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("GChart", {
+            staticClass: "charts-vue",
+            attrs: {
+              type: "ColumnChart",
+              data: _vm.chartData,
+              options: _vm.chartOptions,
+            },
+          }),
+        ],
+        1
+      )
+    : _vm._e()
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      { staticClass: "select-filter-charts", attrs: { name: "", id: "" } },
+      [
+        _c("option", { attrs: { value: "" } }, [_vm._v("Seleciona un año")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "" } }, [_vm._v("Año 2022")]),
+      ]
+    )
+  },
+]
 render._withStripped = true
 
 
