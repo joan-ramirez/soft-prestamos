@@ -6,6 +6,11 @@
         <span class="fecha">Hoy es {{ $fecha_actual }}  Horas</span>
     </div>
 
+    <div class="contenedor_size">
+        <charts-component></charts-component>
+
+    </div>
+
     <section class="navegaciones contenedor_size">
 
         <div class="navegacion" onclick="location.href='{{ route('create.prestamo') }}'">
@@ -19,7 +24,7 @@
         <div class="navegacion" onclick="location.href='{{ route('index.cobro') }}'">
             <div>
                 <i class="fa-solid fa-calendar-days"></i>
-                <span>Cobros del dia</span>
+                <span>Calendario de Cobros</span>
             </div>
         </div>
 

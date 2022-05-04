@@ -14,6 +14,7 @@
             <form action="" method="post" class="formulario_factura_couta">
                 @csrf
                 <h2>Cuota de prestamo</h2>
+                <p><strong>Codigo de cuota:</strong> {{ $deuda->id }} </p>
                 <p><strong>Cliente:</strong> {{ $deuda->prestamo->cliente->nombre }} - {{ $deuda->prestamo->cliente->cedula_de_identidad }}</p>
                 <p><strong>Modalidad de pago:</strong> {{ $deuda->prestamo->modalidad }}</p>
                 <p><strong>Numero de cuota:</strong> 2</p>
@@ -21,7 +22,7 @@
                 <p><strong>Cuotas faltante:</strong> 3</p>
                 <p><strong>Fecha de pago:</strong> {{ $deuda->start }}</p>
 
-                <button> Marcar cuota como pagada e imprimir</button>
+                <button type="submit"> Marcar cuota como pagada e imprimir</button>
             </form>
 
         

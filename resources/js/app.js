@@ -11,6 +11,7 @@ import 'fullcalendar/dist/fullcalendar.css';
 import FullCalendar from 'vue-full-calendar';
 
 
+
 window.Vue = require('vue').default;
 
 Vue.use(FullCalendar);
@@ -29,6 +30,7 @@ Vue.use(FullCalendar);
 
 Vue.component('crear-prestamo', require('./components/CrearPrestamo.vue').default);
 Vue.component('calendar-component', require('./components/CalendarComponent.vue').default);
+Vue.component('charts-component', require('./components/ChartsComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

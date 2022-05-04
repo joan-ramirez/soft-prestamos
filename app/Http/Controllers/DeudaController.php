@@ -7,21 +7,21 @@ use Illuminate\Http\Request;
 
 class DeudaController extends Controller
 {
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth');
-    }
+    }*/
 
     public function index()
     {
-        $events = Deuda::get(['id','title', 'start']);
+        $events = Deuda::get(['id','title', 'start'])->where('status', 0);
 
         $eventList = array();
 
         foreach ($events as $even) {
             array_push($eventList, (object) [
                 'start' => $even['start'],
-                'title' => $even['title'],
+                'title' =>  $even['title'],
                 'url' => route('show.cobro',['deuda' => $even['id']])
             ]);
         }

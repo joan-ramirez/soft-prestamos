@@ -114,7 +114,7 @@ class PrestamoController extends Controller
 
                         Deuda::create([
                             'id_prestamo' => $prestamo->id,
-                            'title' => "Ok",
+                            'title' => "Cuota pendiente",
                             'start' =>  Carbon::parse($request['fecha_de_inicio'])->addDays($increment_dia),
                             'fecha_vencimiento' => "2022-04-26",
                             'status' => 0
@@ -129,7 +129,7 @@ class PrestamoController extends Controller
 
                         Deuda::create([
                             'id_prestamo' => $prestamo->id,
-                            'title' => "Ok",
+                            'title' => "Cuota pendiente",
                             'start' =>  Carbon::parse($request['fecha_de_inicio'])->addWeeks($increment_semana),
                             'fecha_vencimiento' => "2022-04-26",
                             'status' => 0
@@ -144,7 +144,7 @@ class PrestamoController extends Controller
 
                         Deuda::create([
                             'id_prestamo' => $prestamo->id,
-                            'title' => "Ok",
+                            'title' => "Cuota pendiente",
                             'start' =>  Carbon::parse($request['fecha_de_inicio'])->addMonths($increment_mensual),
                             'fecha_vencimiento' => "2022-04-26",
                             'status' => 0

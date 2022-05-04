@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <full-calendar :events="events[0]" :editable="false"></full-calendar>
+    <full-calendar  defaultView="basicWeek" :events="events[0]" :editable="false"></full-calendar>
   </div>
 </template>
 <script>

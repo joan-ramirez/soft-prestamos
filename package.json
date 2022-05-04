@@ -28,6 +28,7 @@
         "babel-runtime": "^6.26.0",
         "moment": "^2.29.3",
         "vue-full-calendar": "^2.8.1-0",
+        "vue-google-charts": "^0.3.3",
         "vue-simple-alert": "^1.1.1"
     }
 }

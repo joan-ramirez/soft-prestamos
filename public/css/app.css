@@ -28,7 +28,7 @@ body {
 
 .contenedor {
     background-color: var(--color-principal);
-    height: 350px;
+    height: 365px;
     display: grid;
     grid-template-rows: auto auto 1fr 1fr;
 }
@@ -70,6 +70,13 @@ body {
     color: white;
     cursor: pointer;
 }
+
+/*charts*/
+.charts-vue {
+    width: 100%;
+    margin-bottom: 20px;
+}
+/*END charts*/
 
 /*NOTIFICACIONES*/
 .contenedor header ul .icono_notificacion svg {
@@ -300,7 +307,7 @@ body {
     height: 19px;
     cursor: pointer;
 }
-.sin-resultado{
+.sin-resultado {
     text-align: center;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -316,7 +323,7 @@ body {
 .view .detalles_cliente {
     padding: 50px;
 }
-.view .detalles_cliente div{
+.view .detalles_cliente div {
     margin-top: 15px;
     margin-bottom: 15px;
     font-size: 15px;
@@ -353,18 +360,18 @@ body {
 }
 
 /*formulario factura couta*/
-.view .formulario_factura_couta h2{
+.view .formulario_factura_couta h2 {
     font-weight: 500;
     font-size: 22px;
 }
-.view .formulario_factura_couta strong{
+.view .formulario_factura_couta strong {
     font-weight: 500;
     font-size: 16px;
 }
-.view .formulario_factura_couta p{ 
+.view .formulario_factura_couta p {
     font-size: 15px;
 }
-.view .formulario_factura_couta button{
+.view .formulario_factura_couta button {
     cursor: pointer;
     border: none;
     background-color: #130f40;
@@ -374,9 +381,8 @@ body {
     padding-left: 20px;
     color: white;
     margin-top: 10px;
-} 
+}
 /*END formulario factura couta*/
-
 
 .view form {
     max-width: 700px;
@@ -434,7 +440,6 @@ body {
 .cerrar_sesion svg {
     color: black;
     height: 27px;
-
 }
 .linea {
     height: 1px;
