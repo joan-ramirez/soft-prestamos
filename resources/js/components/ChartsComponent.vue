@@ -32,13 +32,16 @@ export default {
 
   mounted() {
     axios
-      .get("http://localhost/soft-prestamos/public/estadistica")
+      .get("http://localhost/soft-prestamos/public/estadisticas")
       .then((response) => {
+
         console.log(response.data);
+
         this.chartData.push(
           ["Titulo", "Prestado", "Cobrado", "Pendiente"],
           response.data
         );
+
       });
 
     console.log("Component mounted.");

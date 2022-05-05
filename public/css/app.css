@@ -370,6 +370,8 @@ body {
     font-size: 13.5px;
 }
 
+
+
 /*formulario factura couta*/
 .view .formulario_factura_couta h2 {
     font-weight: 500;
@@ -394,6 +396,35 @@ body {
     margin-top: 10px;
 }
 /*END formulario factura couta*/
+
+/*conten_generar_factura*/
+.conten_generar_factura{
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.conten_generar_factura h1{
+    font-weight: 500;
+    font-size: 22px;
+}
+.conten_generar_factura button{
+    border: none;
+    background-color:#130f40;
+    color: white;
+    padding: 10px;
+    padding-left: 18px;
+    padding-right: 18px;
+    font-size: 14.5px;
+    cursor: pointer;
+    display: flex;
+    margin: auto;
+    gap: 10px;
+}
+.conten_generar_factura button svg{
+    height: 17px;
+}
+/*END conten_generar_factura*/
+
 
 .view form {
     max-width: 700px;

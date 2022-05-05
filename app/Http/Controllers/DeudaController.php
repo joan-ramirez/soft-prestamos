@@ -14,21 +14,32 @@ class DeudaController extends Controller
 
     public function index()
     {
-        $events = Deuda::get(['id','title', 'start'])->where('status', 0);
-
+        $events = Deuda::where('status', 0)->get(['id', 'title', 'start']);
+   
         $eventList = array();
 
         foreach ($events as $even) {
             array_push($eventList, (object) [
                 'start' => $even['start'],
                 'title' =>  $even['title'],
-                'url' => route('show.cobro',['deuda' => $even['id']])
+                'url' => route('show.cobro', ['deuda' => $even['id']])
             ]);
         }
 
+        
         return json_encode($eventList, true);
 
         // return response()->json(["events" => $eventList]);
     }
 
+
+    public function update(Deuda $deuda)
+    {
+        // Marcar cuota  como pagada
+        $deuda->update([
+            'status' => 1,
+        ]);
+        
+        return back();
+    }
 }
