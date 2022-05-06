@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CobroController;
-use App\Http\Controllers\DeudaController;
+use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\EstadisticaController;
+use App\Http\Controllers\FacturaContoller;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PrestamoController;
 
@@ -49,11 +50,11 @@ Route::get('/crear-usuario', [UsuarioController::class, 'create'])->name('create
 Route::post('/guardar-usuario', [UsuarioController::class, 'store'])->name('store.usuario');
 Route::get('/datails/{user}', [UsuarioController::class, 'datails'])->name('datails.usuarios');
 
-Route::get('/deudas', [DeudaController::class, 'index'])->name('index.deuda');
-Route::put('/pagar-deudas/{deuda}', [DeudaController::class, 'update'])->name('update.deuda');
+Route::get('/cuotas', [CuotaController::class, 'index'])->name('index.cuota');
+Route::put('/pagar-cuota/{cuota}', [CuotaController::class, 'update'])->name('pagar_cuota.cuota');
 
 Route::get('/calendario-de-cobros', [CobroController::class, 'index'])->name('index.cobro');
-Route::get('/cobro/{deuda}', [CobroController::class, 'show'])->name('show.cobro');
+Route::get('/cobro/{cuota}', [CobroController::class, 'show'])->name('show.cobro');
 
 
 Route::get('/configuracion', [ConfiguracionController::class, 'index'])->name('index.configuracion');
@@ -62,3 +63,6 @@ Route::put('/cambiar-password', [ConfiguracionController::class, 'cambiar_passwo
 
 
 Route::get('/estadisticas', [EstadisticaController::class, 'show'])->name('show.estadistica');
+
+
+Route::get('/factura-de-pago-cuota/{cuota}', [FacturaContoller::class, 'pago_cuota'])->name('pago_cuota.factura');

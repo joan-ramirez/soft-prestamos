@@ -12,7 +12,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost/soft-prestamos/public/deudas")
+      .get("http://localhost/soft-prestamos/public/cuotas")
       .then((response) => {
         this.events.push(response.data);
       });

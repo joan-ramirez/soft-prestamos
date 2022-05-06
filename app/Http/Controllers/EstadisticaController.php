@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Deuda;
+use App\Models\Cuota;
 use App\Models\Prestamo;
-use Illuminate\Http\Request;
 
 class EstadisticaController extends Controller
 {
@@ -22,18 +21,18 @@ class EstadisticaController extends Controller
             $prestado += $prestamo->importe_de_credito;
         }
 
-        $deudas = Deuda::get();
-        $deudas_cobrada = 0;
-        $deudas_pendiente = 0;
-        foreach ($deudas as $deuda) {
-            if ($deuda->status === 0) {
-                $deudas_pendiente +=  $deuda->prestamo->importe_de_cuota;
+        $cuotas = Cuota::get();
+        $cuotas_cobrada = 0;
+        $cuotas_pendiente = 0;
+        foreach ($cuotas as $cuota) {
+            if ($cuota->status === 0) {
+                $cuotas_pendiente +=  $cuota->prestamo->importe_de_cuota;
             } else {
-                $deudas_cobrada +=  $deuda->prestamo->importe_de_cuota;
+                $cuotas_cobrada +=  $cuota->prestamo->importe_de_cuota;
             }
         }
 
-        $result = array("Estadistica", $prestado, $deudas_cobrada, $deudas_pendiente);
+        $result = array("Estadistica", $prestado, $cuotas_cobrada, $cuotas_pendiente);
 
         return json_encode($result, true);
     }

@@ -5382,7 +5382,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("http://localhost/soft-prestamos/public/deudas").then(function (response) {
+    axios.get("http://localhost/soft-prestamos/public/cuotas").then(function (response) {
       _this.events.push(response.data);
     });
     console.log("Component mounted.");

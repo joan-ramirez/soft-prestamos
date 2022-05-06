@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Deuda;
-use Illuminate\Http\Request;
+use App\Models\Cuota;
 
-class DeudaController extends Controller
+class CuotaController extends Controller
 {
     /*public function __construct()
     {
@@ -14,32 +13,31 @@ class DeudaController extends Controller
 
     public function index()
     {
-        $events = Deuda::where('status', 0)->get(['id', 'title', 'start']);
-   
+        $events = Cuota::where('status', 0)->get(['id', 'title', 'start']);
+
         $eventList = array();
 
         foreach ($events as $even) {
             array_push($eventList, (object) [
                 'start' => $even['start'],
                 'title' =>  $even['title'],
-                'url' => route('show.cobro', ['deuda' => $even['id']])
+                'url' => route('show.cobro', ['cuota' => $even['id']])
             ]);
         }
 
-        
         return json_encode($eventList, true);
 
         // return response()->json(["events" => $eventList]);
     }
 
 
-    public function update(Deuda $deuda)
+    public function update(Cuota $cuota)
     {
         // Marcar cuota  como pagada
-        $deuda->update([
+        $cuota->update([
             'status' => 1,
         ]);
-        
+
         return back();
     }
 }

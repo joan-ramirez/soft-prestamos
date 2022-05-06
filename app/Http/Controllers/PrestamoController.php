@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Rol;
-use App\Models\Deuda;
+use App\Models\Cuota;
 use App\Models\Cliente;
 use App\Models\Prestamo;
 use Illuminate\Http\Request;
@@ -107,12 +107,12 @@ class PrestamoController extends Controller
                     'status' => 1
                 ]);
 
-                //Crear las deudas del prestamo modalidad dia
+                //Crear las Cuotas del prestamo modalidad dia
                 if ($request['modalidad'] === "dia") {
                     for ($i = 0; $i < $request['numero_de_cuotas']; $i++) {
                         $increment_dia = 0 + $i;
 
-                        Deuda::create([
+                        Cuota::create([
                             'id_prestamo' => $prestamo->id,
                             'title' => "Cuota pendiente",
                             'start' =>  Carbon::parse($request['fecha_de_inicio'])->addDays($increment_dia),
@@ -122,12 +122,12 @@ class PrestamoController extends Controller
                     }
                 }
 
-                //Crear las deudas del prestamo modalidad semanal
+                //Crear las Cuotas del prestamo modalidad semanal
                 if ($request['modalidad'] === "semanal") {
                     for ($i = 0; $i < $request['numero_de_cuotas']; $i++) {
                         $increment_semana = 0 + $i;
 
-                        Deuda::create([
+                        Cuota::create([
                             'id_prestamo' => $prestamo->id,
                             'title' => "Cuota pendiente",
                             'start' =>  Carbon::parse($request['fecha_de_inicio'])->addWeeks($increment_semana),
@@ -137,12 +137,12 @@ class PrestamoController extends Controller
                     }
                 }
 
-                //Crear las deudas del prestamo modalidad mensual
+                //Crear las Cuotas del prestamo modalidad mensual
                 if ($request['modalidad'] === "mensual") {
                     for ($i = 0; $i < $request['numero_de_cuotas']; $i++) {
                         $increment_mensual = 0 + $i;
 
-                        Deuda::create([
+                        Cuota::create([
                             'id_prestamo' => $prestamo->id,
                             'title' => "Cuota pendiente",
                             'start' =>  Carbon::parse($request['fecha_de_inicio'])->addMonths($increment_mensual),

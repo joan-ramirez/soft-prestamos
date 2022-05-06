@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Deuda;
+use App\Models\Cuota;
 use Illuminate\Http\Request;
 
 class CobroController extends Controller
@@ -51,9 +51,9 @@ class CobroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Deuda $deuda)
+    public function show(Cuota $cuota)
     {
-        return view('cobro.show', compact('deuda'));
+        return view('cobro.show', compact('cuota'));
     }
 
     /**
