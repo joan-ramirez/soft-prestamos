@@ -17,6 +17,7 @@
 import { GChart } from "vue-google-charts";
 
 export default {
+  props: ["urlEstadisticas"],
   data() {
     return {
       // Array will be automatically processed with visualization.arrayToDataTable function
@@ -31,18 +32,14 @@ export default {
   },
 
   mounted() {
-    axios
-      .get("http://localhost/soft-prestamos/public/estadisticas")
-      .then((response) => {
+    axios.get(this.urlEstadisticas).then((response) => {
+      console.log(response.data);
 
-        console.log(response.data);
-
-        this.chartData.push(
-          ["Titulo", "Prestado", "Cobrado", "Pendiente","Ganancia"],
-          response.data
-        );
-
-      });
+      this.chartData.push(
+        ["Titulo", "Prestado", "Cobrado", "Pendiente", "Ganancia"],
+        response.data
+      );
+    });
 
     console.log("Component mounted.");
   },

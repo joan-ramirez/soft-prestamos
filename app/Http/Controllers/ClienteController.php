@@ -84,6 +84,9 @@ class ClienteController extends Controller
             'ubicacion' => $request['ubicacion'],
             'status' => 1,
         ]);
+
+
+        return redirect()->back()->with('success', '');
     }
 
 
@@ -92,12 +95,11 @@ class ClienteController extends Controller
 
         $get_cliente = $cliente->find($request['id']);
 
-        if($get_cliente){
-            return view('cliente.details',compact('get_cliente'));
+        if ($get_cliente) {
+            return view('cliente.details', compact('get_cliente'));
         }
-    
-         return redirect()->route('index.clientes');
 
+        return redirect()->route('index.clientes');
     }
 
 

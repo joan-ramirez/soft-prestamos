@@ -25,8 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-    
         $fecha_actual = Carbon::now()->locale('es')->isoFormat('LLLL');
 
         return view('home', compact('fecha_actual'));

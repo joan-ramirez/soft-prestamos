@@ -102,6 +102,9 @@ class UsuarioController extends Controller
                 'id_user' => $usuario->id
             ]);
         }
+
+
+        return redirect()->back()->with('success', '');
     }
 
 

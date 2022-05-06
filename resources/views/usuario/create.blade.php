@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+
+@section('head')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@endsection
+
 @section('content')
     <div class="volver contenedor_size">
         <svg onclick="location.href='{{ route('index.usuarios') }}'" class="w-6 h-6" fill="none"
@@ -10,8 +15,22 @@
 
     <section class="view contenedor_size">
 
+
+
+
         <form action="{{ route('store.usuario') }}" method="post">
             @csrf
+
+            @if (\Session::has('success'))
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Exito.',
+                        text: 'EL usuario fue registrado',
+                        confirmButtonColor: '#130f40',
+                    })
+                </script>
+            @endif
 
             <div class="input">
                 <label for="">Nombre:</label>
@@ -30,7 +49,8 @@
 
             <div class="input">
                 <label for="">Apellido:</label>
-                <div> <input type="text" value="{{ old('apellido') }}" class="@error('apellido') invalid-input @enderror"  name="apellido" placeholder="Apellido">
+                <div> <input type="text" value="{{ old('apellido') }}" class="@error('apellido') invalid-input @enderror"
+                        name="apellido" placeholder="Apellido">
 
                     @error('apellido')
                         <span class="error_text" role="alert">
@@ -43,7 +63,8 @@
 
             <div class="input">
                 <label for="">Correo Electrónico:</label>
-                <div><input type="email" class="@error('correo_electronico') invalid-input @enderror"  value="{{ old('correo_electronico') }}" name="correo_electronico"
+                <div><input type="email" class="@error('correo_electronico') invalid-input @enderror"
+                        value="{{ old('correo_electronico') }}" name="correo_electronico"
                         placeholder="Correo Electrónico">
 
                     @error('correo_electronico')
@@ -56,7 +77,8 @@
 
             <div class="input">
                 <label for="">Contraseña de acceso:</label>
-                <div><input type="password" class="@error('password') invalid-input @enderror" name="password" placeholder="password" placeholder="Contraseña de acceso">
+                <div><input type="password" class="@error('password') invalid-input @enderror" name="password"
+                        placeholder="password" placeholder="Contraseña de acceso">
 
 
                     @error('password')

@@ -5374,6 +5374,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["urlCuotas"],
   data: function data() {
     return {
       events: []
@@ -5382,7 +5383,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("http://localhost/soft-prestamos/public/cuotas").then(function (response) {
+    axios.get(this.urlCuotas).then(function (response) {
       _this.events.push(response.data);
     });
     console.log("Component mounted.");
@@ -5420,6 +5421,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["urlEstadisticas"],
   data: function data() {
     return {
       // Array will be automatically processed with visualization.arrayToDataTable function
@@ -5435,7 +5437,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("http://localhost/soft-prestamos/public/estadisticas").then(function (response) {
+    axios.get(this.urlEstadisticas).then(function (response) {
       console.log(response.data);
 
       _this.chartData.push(["Titulo", "Prestado", "Cobrado", "Pendiente", "Ganancia"], response.data);
@@ -5674,6 +5676,7 @@ __webpack_require__.r(__webpack_exports__);
 
 Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["urlBuscarCliente", "urlGuardarPrestamo"],
   mounted: function mounted() {
     var urlParams = new URLSearchParams(window.location.search);
 
@@ -5716,7 +5719,7 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
       var _this = this;
 
       if (e.target.name === "cliente") {
-        axios.get("http://localhost/soft-prestamos/public/buscar-cliente", {
+        axios.get(this.urlBuscarCliente, {
           params: {
             cliente: this.cliente
           }
@@ -5758,7 +5761,7 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
     guardarPrestamo: function guardarPrestamo(e) {
       var _this2 = this;
 
-      axios.post("http://localhost/soft-prestamos/public/guardar-prestamo", {
+      axios.post(this.urlGuardarPrestamo, {
         cliente: this.cliente,
         importe_de_credito: this.importe_de_credito,
         modalidad: this.modalidad,

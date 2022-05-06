@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('head')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@endsection
+
+
 @section('content')
     <div class="volver contenedor_size">
         <svg onclick="location.href='{{ route('index.clientes') }}'" class="w-6 h-6" fill="none"
@@ -12,6 +17,18 @@
 
         <form action="{{ route('store.cliente') }}" method="post">
             @csrf
+
+            @if (\Session::has('success'))
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Exito.',
+                    text: 'EL cliente fue registrado',
+                    confirmButtonColor: '#130f40',
+                })
+            </script>
+        @endif
+
 
             <div class="input">
                 <label for="">Cédula de Identidad:</label>

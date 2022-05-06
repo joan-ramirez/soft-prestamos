@@ -5,6 +5,7 @@
 </template>
 <script>
 export default {
+    props: ["urlCuotas"],
   data() {
     return {
       events: [],
@@ -12,7 +13,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost/soft-prestamos/public/cuotas")
+      .get(this.urlCuotas)
       .then((response) => {
         this.events.push(response.data);
       });

@@ -9,6 +9,6 @@
     </div>
 
     <section class="view contenedor_size">
-        <calendar-component></calendar-component>
+        <calendar-component url-cuotas="{{ route('index.cuota') }}"></calendar-component>
     </section>
 @endsection

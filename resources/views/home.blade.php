@@ -7,7 +7,7 @@
     </div>
 
     <div class="contenedor_size">
-        <charts-component></charts-component>
+        <charts-component url-estadisticas="{{ route('show.estadistica') }}"></charts-component>
 
     </div>
 

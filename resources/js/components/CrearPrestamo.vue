@@ -215,6 +215,7 @@ import moment from "moment";
 Vue.use(VueSimpleAlert);
 
 export default {
+  props: ["urlBuscarCliente", "urlGuardarPrestamo"],
   mounted() {
     let urlParams = new URLSearchParams(window.location.search);
 
@@ -261,7 +262,7 @@ export default {
     escribir(e) {
       if (e.target.name === "cliente") {
         axios
-          .get("http://localhost/soft-prestamos/public/buscar-cliente", {
+          .get(this.urlBuscarCliente, {
             params: {
               cliente: this.cliente,
             },
@@ -316,7 +317,7 @@ export default {
 
     guardarPrestamo(e) {
       axios
-        .post("http://localhost/soft-prestamos/public/guardar-prestamo", {
+        .post(this.urlGuardarPrestamo, {
           cliente: this.cliente,
           importe_de_credito: this.importe_de_credito,
           modalidad: this.modalidad,
