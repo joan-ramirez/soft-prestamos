@@ -18,6 +18,9 @@ input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+a {
+    text-decoration: none;
+}
 
 body {
     margin: 0px;
@@ -77,7 +80,7 @@ body {
     margin-bottom: 20px;
 }
 
-.select-filter-charts{
+.select-filter-charts {
     width: 100%;
     height: 30px;
     font-size: 18px;
@@ -86,8 +89,6 @@ body {
     border: none;
 }
 /*END charts*/
-
-
 
 /*NOTIFICACIONES*/
 .contenedor header ul .icono_notificacion svg {
@@ -370,8 +371,6 @@ body {
     font-size: 13.5px;
 }
 
-
-
 /*formulario factura couta*/
 .view .formulario_factura_couta h2 {
     font-weight: 500;
@@ -398,18 +397,18 @@ body {
 /*END formulario factura couta*/
 
 /*conten_generar_factura*/
-.conten_generar_factura{
+.conten_generar_factura {
     text-align: center;
     padding-top: 100px;
     padding-bottom: 100px;
 }
-.conten_generar_factura h1{
+.conten_generar_factura h1 {
     font-weight: 500;
     font-size: 22px;
 }
-.conten_generar_factura button{
+.conten_generar_factura button {
     border: none;
-    background-color:#130f40;
+    background-color: #130f40;
     color: white;
     padding: 10px;
     padding-left: 18px;
@@ -420,11 +419,10 @@ body {
     margin: auto;
     gap: 10px;
 }
-.conten_generar_factura button svg{
+.conten_generar_factura button svg {
     height: 17px;
 }
 /*END conten_generar_factura*/
-
 
 .view form {
     max-width: 700px;

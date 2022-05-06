@@ -38,7 +38,7 @@ export default {
         console.log(response.data);
 
         this.chartData.push(
-          ["Titulo", "Prestado", "Cobrado", "Pendiente"],
+          ["Titulo", "Prestado", "Cobrado", "Pendiente","Ganancia"],
           response.data
         );
 

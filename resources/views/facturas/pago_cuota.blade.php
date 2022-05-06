@@ -15,7 +15,6 @@
     <p><strong>Monto de cuota:</strong> ${{ $cuota->prestamo->importe_de_cuota }}</p>
     <p><strong>Cuotas faltante:</strong> 3</p>
     <p><strong>Fecha de pago:</strong> {{ $cuota->start }}</p>
-
 </body>
 
 </html>

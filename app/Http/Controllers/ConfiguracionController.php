@@ -10,11 +10,16 @@ use Illuminate\Support\Facades\Hash;
 
 class ConfiguracionController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('configuracion.index');
     }
-
 
     public function cambiar_password(Request $request)
     {

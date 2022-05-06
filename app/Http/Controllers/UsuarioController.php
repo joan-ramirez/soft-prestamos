@@ -107,16 +107,12 @@ class UsuarioController extends Controller
 
     public function datails(User $user)
     {
-
         if ($user) {
             return view('usuario.details', compact('user'));
         }
 
         return redirect()->route('index.usuarios');
-
     }
-
-
 
     /**
      * Show the form for editing the specified resource.

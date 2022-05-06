@@ -7,7 +7,6 @@ use App\Models\Prestamo;
 
 class EstadisticaController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -32,7 +31,7 @@ class EstadisticaController extends Controller
             }
         }
 
-        $result = array("Estadistica", $prestado, $cuotas_cobrada, $cuotas_pendiente);
+        $result = array("Estadistica", $prestado, $cuotas_cobrada, $cuotas_pendiente, $cuotas_cobrada - $prestado);
 
         return json_encode($result, true);
     }

@@ -13,7 +13,6 @@ class FacturaContoller extends Controller
         $this->middleware('auth');
     }
 
-
     // Generar la factura de pago de cuota
     public function pago_cuota(Cuota $cuota)
     {

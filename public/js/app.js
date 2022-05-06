@@ -5438,7 +5438,7 @@ __webpack_require__.r(__webpack_exports__);
     axios.get("http://localhost/soft-prestamos/public/estadisticas").then(function (response) {
       console.log(response.data);
 
-      _this.chartData.push(["Titulo", "Prestado", "Cobrado", "Pendiente"], response.data);
+      _this.chartData.push(["Titulo", "Prestado", "Cobrado", "Pendiente", "Ganancia"], response.data);
     });
     console.log("Component mounted.");
   }

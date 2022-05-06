@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Validator;
 
 class PrestamoController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');

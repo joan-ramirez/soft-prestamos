@@ -22,10 +22,6 @@ class ClienteController extends Controller
     public function index(Request $request, Cliente $cliente)
     {
 
-
-
-
-
         $rol = Rol::find(2);
         $this->authorize('rol', $rol);
 

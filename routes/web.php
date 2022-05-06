@@ -50,8 +50,10 @@ Route::get('/crear-usuario', [UsuarioController::class, 'create'])->name('create
 Route::post('/guardar-usuario', [UsuarioController::class, 'store'])->name('store.usuario');
 Route::get('/datails/{user}', [UsuarioController::class, 'datails'])->name('datails.usuarios');
 
+
 Route::get('/cuotas', [CuotaController::class, 'index'])->name('index.cuota');
 Route::put('/pagar-cuota/{cuota}', [CuotaController::class, 'update'])->name('pagar_cuota.cuota');
+
 
 Route::get('/calendario-de-cobros', [CobroController::class, 'index'])->name('index.cobro');
 Route::get('/cobro/{cuota}', [CobroController::class, 'show'])->name('show.cobro');
@@ -59,7 +61,6 @@ Route::get('/cobro/{cuota}', [CobroController::class, 'show'])->name('show.cobro
 
 Route::get('/configuracion', [ConfiguracionController::class, 'index'])->name('index.configuracion');
 Route::put('/cambiar-password', [ConfiguracionController::class, 'cambiar_password'])->name('cambiar_password.configuracion');
-
 
 
 Route::get('/estadisticas', [EstadisticaController::class, 'show'])->name('show.estadistica');
