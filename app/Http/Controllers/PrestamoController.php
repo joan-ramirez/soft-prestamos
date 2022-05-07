@@ -153,6 +153,7 @@ class PrestamoController extends Controller
 
                 $data = array(
                     "code" => 200,
+                    "url_generar_factura" => route('prestamo.factura', ['prestamo' => $prestamo->id]),
                     "mensaje" => "Prestamo registrado...",
                 );
             } else {

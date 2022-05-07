@@ -66,4 +66,5 @@ Route::put('/cambiar-password', [ConfiguracionController::class, 'cambiar_passwo
 Route::get('/estadisticas', [EstadisticaController::class, 'show'])->name('show.estadistica');
 
 
+Route::get('/factura-de-prestamo/{prestamo}', [FacturaContoller::class, 'prestamo'])->name('prestamo.factura');
 Route::get('/factura-de-pago-cuota/{cuota}', [FacturaContoller::class, 'pago_cuota'])->name('pago_cuota.factura');

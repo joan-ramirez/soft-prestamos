@@ -222,6 +222,7 @@ export default {
     if (urlParams.has("cliente")) {
       this.cliente = urlParams.get("cliente");
     }
+    // this.alertSuccess();
   },
 
   data() {
@@ -236,6 +237,7 @@ export default {
       total_a_pagar: "",
       interes_generado: "",
       fecha_de_inicio: "",
+      url_generar_factura: "",
 
       errors: [
         {
@@ -252,10 +254,18 @@ export default {
   methods: {
     alertSuccess() {
       this.$fire({
-        title: "Prestamo fue exitoso",
-        text: "text",
         type: "success",
-        timer: 3500,
+        title: "Prestamo fue exitoso",
+        text: "Necesita generar factura o comprobante del prestamo?",
+        showCancelButton: true,
+        cancelButtonText: "No, cancelar!",
+        cancelButtonColor: "#e74c3c",
+        confirmButtonText: "Si, Generar!",
+        confirmButtonColor: "#130f40",
+      }).then((result) => {
+        if (result.value) {
+          window.open(this.url_generar_factura, "_blank");
+        }
       });
     },
 
@@ -376,6 +386,9 @@ export default {
           }
           // Guardado con exito.
           this.alertSuccess();
+
+          // Obtener la url de la factura del prestamo
+          this.url_generar_factura = response.data.url_generar_factura;
 
           // Reset Formulario
           this.cliente = "";

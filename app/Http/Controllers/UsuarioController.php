@@ -103,7 +103,6 @@ class UsuarioController extends Controller
             ]);
         }
 
-
         return redirect()->back()->with('success', '');
     }
 

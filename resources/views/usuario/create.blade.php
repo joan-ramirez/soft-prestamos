@@ -15,9 +15,6 @@
 
     <section class="view contenedor_size">
 
-
-
-
         <form action="{{ route('store.usuario') }}" method="post">
             @csrf
 
@@ -79,7 +76,6 @@
                 <label for="">Contraseña de acceso:</label>
                 <div><input type="password" class="@error('password') invalid-input @enderror" name="password"
                         placeholder="password" placeholder="Contraseña de acceso">
-
 
                     @error('password')
                         <span class="error_text" role="alert">

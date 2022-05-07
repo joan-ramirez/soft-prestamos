@@ -5682,7 +5682,8 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
     if (urlParams.has("cliente")) {
       this.cliente = urlParams.get("cliente");
-    }
+    } // this.alertSuccess();
+
   },
   data: function data() {
     return {
@@ -5696,6 +5697,7 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
       total_a_pagar: "",
       interes_generado: "",
       fecha_de_inicio: "",
+      url_generar_factura: "",
       errors: [{
         cliente: [],
         importe_de_credito: [],
@@ -5708,15 +5710,25 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
   },
   methods: {
     alertSuccess: function alertSuccess() {
+      var _this = this;
+
       this.$fire({
-        title: "Prestamo fue exitoso",
-        text: "text",
         type: "success",
-        timer: 3500
+        title: "Prestamo fue exitoso",
+        text: "Necesita generar factura o comprobante del prestamo?",
+        showCancelButton: true,
+        cancelButtonText: "No, cancelar!",
+        cancelButtonColor: "#e74c3c",
+        confirmButtonText: "Si, Generar!",
+        confirmButtonColor: "#130f40"
+      }).then(function (result) {
+        if (result.value) {
+          window.open(_this.url_generar_factura, "_blank");
+        }
       });
     },
     escribir: function escribir(e) {
-      var _this = this;
+      var _this2 = this;
 
       if (e.target.name === "cliente") {
         axios.get(this.urlBuscarCliente, {
@@ -5724,7 +5736,7 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
             cliente: this.cliente
           }
         }).then(function (response) {
-          _this.restul_clientes = response.data.clientes.data; // console.log(response.data.clientes.data);
+          _this2.restul_clientes = response.data.clientes.data; // console.log(response.data.clientes.data);
         });
       }
 
@@ -5759,7 +5771,7 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
       }
     },
     guardarPrestamo: function guardarPrestamo(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.post(this.urlGuardarPrestamo, {
         cliente: this.cliente,
@@ -5773,7 +5785,7 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
         fecha_de_inicio: this.fecha_de_inicio
       }).then(function (response) {
         // Reset todos los errores
-        _this2.errors = [{
+        _this3.errors = [{
           cliente: [],
           importe_de_credito: [],
           modalidad: [],
@@ -5790,55 +5802,57 @@ Vue.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]);
           if ((_response$data$mensaj = response.data.mensaje) !== null && _response$data$mensaj !== void 0 && _response$data$mensaj.cliente) {
             var _response$data$mensaj2;
 
-            _this2.errors[0].cliente = (_response$data$mensaj2 = response.data.mensaje) === null || _response$data$mensaj2 === void 0 ? void 0 : _response$data$mensaj2.cliente;
+            _this3.errors[0].cliente = (_response$data$mensaj2 = response.data.mensaje) === null || _response$data$mensaj2 === void 0 ? void 0 : _response$data$mensaj2.cliente;
           }
 
           if ((_response$data$mensaj3 = response.data.mensaje) !== null && _response$data$mensaj3 !== void 0 && _response$data$mensaj3.importe_de_credito) {
             var _response$data$mensaj4;
 
-            _this2.errors[0].importe_de_credito = (_response$data$mensaj4 = response.data.mensaje) === null || _response$data$mensaj4 === void 0 ? void 0 : _response$data$mensaj4.importe_de_credito;
+            _this3.errors[0].importe_de_credito = (_response$data$mensaj4 = response.data.mensaje) === null || _response$data$mensaj4 === void 0 ? void 0 : _response$data$mensaj4.importe_de_credito;
           }
 
           if ((_response$data$mensaj5 = response.data.mensaje) !== null && _response$data$mensaj5 !== void 0 && _response$data$mensaj5.modalidad) {
             var _response$data$mensaj6;
 
-            _this2.errors[0].modalidad = (_response$data$mensaj6 = response.data.mensaje) === null || _response$data$mensaj6 === void 0 ? void 0 : _response$data$mensaj6.modalidad;
+            _this3.errors[0].modalidad = (_response$data$mensaj6 = response.data.mensaje) === null || _response$data$mensaj6 === void 0 ? void 0 : _response$data$mensaj6.modalidad;
           }
 
           if ((_response$data$mensaj7 = response.data.mensaje) !== null && _response$data$mensaj7 !== void 0 && _response$data$mensaj7.tasa_de_interes) {
             var _response$data$mensaj8;
 
-            _this2.errors[0].tasa_de_interes = (_response$data$mensaj8 = response.data.mensaje) === null || _response$data$mensaj8 === void 0 ? void 0 : _response$data$mensaj8.tasa_de_interes;
+            _this3.errors[0].tasa_de_interes = (_response$data$mensaj8 = response.data.mensaje) === null || _response$data$mensaj8 === void 0 ? void 0 : _response$data$mensaj8.tasa_de_interes;
           }
 
           if ((_response$data$mensaj9 = response.data.mensaje) !== null && _response$data$mensaj9 !== void 0 && _response$data$mensaj9.numero_de_cuotas) {
             var _response$data$mensaj10;
 
-            _this2.errors[0].numero_de_cuotas = (_response$data$mensaj10 = response.data.mensaje) === null || _response$data$mensaj10 === void 0 ? void 0 : _response$data$mensaj10.numero_de_cuotas;
+            _this3.errors[0].numero_de_cuotas = (_response$data$mensaj10 = response.data.mensaje) === null || _response$data$mensaj10 === void 0 ? void 0 : _response$data$mensaj10.numero_de_cuotas;
           }
 
           if ((_response$data$mensaj11 = response.data.mensaje) !== null && _response$data$mensaj11 !== void 0 && _response$data$mensaj11.fecha_de_inicio) {
             var _response$data$mensaj12;
 
-            _this2.errors[0].fecha_de_inicio = (_response$data$mensaj12 = response.data.mensaje) === null || _response$data$mensaj12 === void 0 ? void 0 : _response$data$mensaj12.fecha_de_inicio;
+            _this3.errors[0].fecha_de_inicio = (_response$data$mensaj12 = response.data.mensaje) === null || _response$data$mensaj12 === void 0 ? void 0 : _response$data$mensaj12.fecha_de_inicio;
           }
 
           return;
         } // Guardado con exito.
 
 
-        _this2.alertSuccess(); // Reset Formulario
+        _this3.alertSuccess(); // Obtener la url de la factura del prestamo
 
 
-        _this2.cliente = "";
-        _this2.importe_de_credito = "";
-        _this2.modalidad = "";
-        _this2.tasa_de_interes = "";
-        _this2.numero_de_cuotas = "";
-        _this2.importe_de_cuota = "";
-        _this2.total_a_pagar = "";
-        _this2.interes_generado = "";
-        _this2.fecha_de_inicio = new Date().toISOString().split("T")[0];
+        _this3.url_generar_factura = response.data.url_generar_factura; // Reset Formulario
+
+        _this3.cliente = "";
+        _this3.importe_de_credito = "";
+        _this3.modalidad = "";
+        _this3.tasa_de_interes = "";
+        _this3.numero_de_cuotas = "";
+        _this3.importe_de_cuota = "";
+        _this3.total_a_pagar = "";
+        _this3.interes_generado = "";
+        _this3.fecha_de_inicio = new Date().toISOString().split("T")[0];
       });
       e.preventDefault();
     }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cuota;
-
+use App\Models\Prestamo;
 use PDF;
 
 class FacturaContoller extends Controller
@@ -12,6 +12,19 @@ class FacturaContoller extends Controller
     {
         $this->middleware('auth');
     }
+
+    // Generar la factura del prestamo
+    public function prestamo(Prestamo $prestamo)
+    {
+        $data = [
+            'prestamo' => "",
+        ];
+
+        $pdf = PDF::loadView('facturas/prestamo', $data);
+
+        return $pdf->stream('itsolutionstuff.pdf', ["Attachment" => true]);
+    }
+
 
     // Generar la factura de pago de cuota
     public function pago_cuota(Cuota $cuota)

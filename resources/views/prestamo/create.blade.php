@@ -10,11 +10,8 @@
 
     <section class="view contenedor_size">
 
-        <crear-prestamo 
-        url-app="{{ url('') }}" 
-        url-buscar-cliente="{{ route('show.clientes') }}" 
-        url-guardar-prestamo="{{ route('store.prestamo') }}" 
-        />
+        <crear-prestamo url-buscar-cliente="{{ route('show.clientes') }}"
+            url-guardar-prestamo="{{ route('store.prestamo') }}" />
 
     </section>
 @endsection
