@@ -17,12 +17,12 @@ class FacturaContoller extends Controller
     public function prestamo(Prestamo $prestamo)
     {
         $data = [
-            'prestamo' => "",
+            'prestamo' => $prestamo,
         ];
 
         $pdf = PDF::loadView('facturas/prestamo', $data);
 
-        return $pdf->stream('itsolutionstuff.pdf', ["Attachment" => true]);
+        return $pdf->stream('factura_prestamo' . $prestamo->id . '.pdf', ["Attachment" => true]);
     }
 
 
@@ -35,6 +35,6 @@ class FacturaContoller extends Controller
 
         $pdf = PDF::loadView('facturas/pago_cuota', $data);
 
-        return $pdf->stream('itsolutionstuff.pdf', ["Attachment" => true]);
+        return $pdf->stream('factura_pago_cuota' . $cuota->id . '.pdf', ["Attachment" => true]);
     }
 }

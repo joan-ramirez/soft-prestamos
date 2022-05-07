@@ -22,11 +22,15 @@ class Prestamo extends Model
         'status'
     ];
 
-    
+    // obtener el cliente del prestamo
     public function cliente()
     {
-        return $this->hasOne(Cliente::class,'cedula_de_identidad', 'cedula_de_identidad_cliente');
+        return $this->hasOne(Cliente::class, 'cedula_de_identidad', 'cedula_de_identidad_cliente');
     }
 
+        // Obtener los roles/permisos del usuario autenticado.
+        public function cuotas()
+        {
+            return $this->hasMany(Cuota::class,'id_prestamo');
+        }
 }
-
