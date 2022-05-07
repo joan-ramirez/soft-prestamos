@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cuota;
 use App\Models\Prestamo;
-use PDF;
+
+use Barryvdh\DomPDF\Facade\PDF as PDF;
 
 class FacturaContoller extends Controller
 {
