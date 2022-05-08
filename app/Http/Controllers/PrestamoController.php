@@ -36,7 +36,7 @@ class PrestamoController extends Controller
             $query = "";
         }
 
-        $prestamos = Prestamo::query()->where('cedula_de_identidad_cliente', 'like', "%{$query}%")->paginate(10);
+        $prestamos = Prestamo::query()->where('cedula_de_identidad_cliente', 'like', "%{$query}%")->orWhere('id', 'LIKE', "%{$query}%")->paginate(10);
 
         return view('prestamo.index', compact('prestamos', 'query'));
     }

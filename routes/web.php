@@ -53,6 +53,7 @@ Route::get('/datails/{user}', [UsuarioController::class, 'datails'])->name('data
 
 Route::get('/cuotas', [CuotaController::class, 'index'])->name('index.cuota');
 Route::put('/pagar-cuota/{cuota}', [CuotaController::class, 'update'])->name('pagar_cuota.cuota');
+Route::get('/cuotas_atrasadas', [CuotaController::class, 'cuotas_atrasadas'])->name('cuotas_atrasadas.cuota');
 
 
 Route::get('/calendario-de-cobros', [CobroController::class, 'index'])->name('index.cobro');

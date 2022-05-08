@@ -31,7 +31,6 @@
 
             </form>
 
-
             @if (count($clientes))
                 <div class="labels">
                     <div class="label_usuario">
@@ -68,6 +67,7 @@
                 @endforeach
 
                 {{ $clientes->links() }}
+                
             @else
                 <!--Me falta esto-->
                 <div class="sin-resultado">

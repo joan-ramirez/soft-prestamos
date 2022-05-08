@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Cuota;
 
 class CuotaController extends Controller
@@ -39,5 +40,13 @@ class CuotaController extends Controller
         ]);
 
         return back();
+    }
+
+
+    public function cuotas_atrasadas()
+    {
+        $cuotas = Cuota::query()->where('start', '<', Carbon::now()->format('Y-m-d'))->where('status', '=', 0)->paginate(6);
+
+        return view('cuota-atrasada.index', compact('cuotas'));
     }
 }

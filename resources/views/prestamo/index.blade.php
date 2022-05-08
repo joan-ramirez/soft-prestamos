@@ -17,8 +17,7 @@
             </div>
 
             <form action="{{ route('index.prestamos') }}" method="get" class="buscador">
-                <input type="search" name="search" value="{{ $query }}"
-                    placeholder="Buscar prestamos de cliente por Cédula de identidad" />
+                <input type="search" name="search" value="{{ $query }}" placeholder="Buscar prestamos por codigo o cedula de identidad del cliente" />
 
                 <button type="submit">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -32,7 +31,7 @@
             @if (count($prestamos))
                 <div class="labels">
                     <div class="label_usuario">
-                        <span>Cliente con prestamos</span>
+                        <span>Prestamos</span>
                     </div>
 
                     <div class="label_acciones">
@@ -44,13 +43,34 @@
                     <div class="usuario">
 
                         <div class="info">
-                            <span class="nombre_usuario">{{ $prestamo->cliente->nombre }}</span>
-                            <span class="codigo_usuario">{{ $prestamo->cedula_de_identidad_cliente }}</span>
+                            <span class="codigo_usuario"><strong>Codigo:</strong> {{ $prestamo->id }}</span>
+                            <span class="codigo_usuario"><strong>Cliente:</strong> {{ $prestamo->cliente->nombre }}  - {{ $prestamo->cliente->cedula_de_identidad }}</span>
+
+                            @php
+                                $estado_pagado = true;
+                            @endphp
+
+                            @foreach ($prestamo->cuotas as $cuota)
+                                @if (!$cuota->status)
+                                    @php
+                                        $estado_pagado = false;
+                                    @endphp
+                                @endif
+                            @endforeach
+
+                            @if ($estado_pagado)
+                               <strong> <span class="codigo_usuario" style="color: #2ecc71;">Pagado</span></strong>
+                              
+                                @else
+
+                                <strong><span class="codigo_usuario" style="color: #e74c3c;">Sin pagar</span></strong>
+                            @endif
+
                         </div>
 
                         <div class="acciones">
                             <button>Desactivar</button>
-                            <button>Detalles</button>
+                            <button onclick=" window.open('{{ route('prestamo.factura', ['prestamo' => $prestamo->id]) }}','_blank')">Generar Factura</button>
                         </div>
 
                     </div>

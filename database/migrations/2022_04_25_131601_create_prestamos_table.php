@@ -30,12 +30,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('cedula_de_identidad_cliente')->references('cedula_de_identidad')->on('clientes')->comment('La cedula de identidad del cliente que cogio el prestamo');
             $table->string('modalidad');
-            $table->double('importe_de_credito', 8, 2);
+            $table->double('importe_de_credito', 16, 2);
             $table->double('tasa_de_interes', 8, 2);
             $table->integer('numero_de_cuotas');
-            $table->double('importe_de_cuota', 8, 2);
-            $table->double('total_a_pagar', 8, 2);
-            $table->double('interes_generado', 8, 2);
+            $table->double('importe_de_cuota', 16, 2);
+            $table->double('total_a_pagar', 16, 2);
+            $table->double('interes_generado', 16, 2);
             $table->date('fecha_de_inicio');
             $table->boolean('status');
             $table->timestamps();

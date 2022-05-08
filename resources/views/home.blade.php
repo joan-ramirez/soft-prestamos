@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div class="navegacion" onclick="location.href=''">
+        <div class="navegacion" onclick="location.href='{{ route('cuotas_atrasadas.cuota') }}'">
             <div>
                 <i class="fa-solid fa-clock-rotate-left"></i>
                 <span>Cuotas atrasadas</span>
