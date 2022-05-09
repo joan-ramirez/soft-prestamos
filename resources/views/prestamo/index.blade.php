@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="acciones">
-                            <button>Desactivar</button>
+                            <button>Reembolso</button>
                             <button onclick=" window.open('{{ route('prestamo.factura', ['prestamo' => $prestamo->id]) }}','_blank')">Generar Factura</button>
                         </div>
 

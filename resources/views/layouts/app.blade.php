@@ -25,7 +25,7 @@
     <div class="contenedor" id="app">
         <header class="contenedor_size">
             <div class="logo">
-                Prestamos
+                <a href="{{ route('home') }}">Prestamos</a>
             </div>
 
             <ul>

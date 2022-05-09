@@ -43,9 +43,9 @@ body {
 }
 
 /*HEADER*/
-.contenedor header .logo {
+.contenedor header .logo a {
     color: white;
-    font-size: 25px;
+    font-size: 24px;
 }
 
 .contenedor header {
@@ -256,7 +256,6 @@ body {
 .navegaciones {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    min-height: 400px;
     grid-gap: 25px;
 }
 
@@ -701,3 +700,47 @@ footer {
     height: 45px;
 }
 /*FIN FOOTER*/
+
+@media (max-width: 800px) {
+    .navegaciones {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+    .navegaciones .navegacion {
+        height: 155px;
+    }
+    .navegaciones .navegacion i {
+        font-size: 30px;
+    }
+    .navegaciones .navegacion span {
+        font-size: 13px;
+    }
+    /******************************/
+    .view form .input {
+        grid-template-columns: 1fr;
+    }
+
+    .view form .input label {
+        font-size: 14px;
+    }
+
+    .view form .select {
+        grid-template-columns: 1fr;
+    }
+
+    .view form .select label {
+        font-size: 14px;
+    }
+    /******************************/
+    .roles {
+        grid-template-columns: 1fr;
+    }
+
+    /****************************** */
+    .contenedor header ul .notificaciones {
+        position: absolute;
+        margin-left: 0px;
+        height: 300px;
+        width: 100%;
+    }
+}
