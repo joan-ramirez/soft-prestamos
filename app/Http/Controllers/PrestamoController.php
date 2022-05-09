@@ -103,6 +103,7 @@ class PrestamoController extends Controller
                     'total_a_pagar' => $request['total_a_pagar'],
                     'interes_generado' =>  $request['interes_generado'],
                     'fecha_de_inicio' => $request['fecha_de_inicio'],
+                    'year_inicio' => Carbon::parse($request['fecha_de_inicio'])->format('Y'),
                     'status' => 1
                 ]);
 
@@ -110,12 +111,11 @@ class PrestamoController extends Controller
                 if ($request['modalidad'] === "dia") {
                     for ($i = 0; $i < $request['numero_de_cuotas']; $i++) {
                         $increment_dia = 0 + $i;
-
                         Cuota::create([
                             'id_prestamo' => $prestamo->id,
                             'title' => "Cuota pendiente",
                             'start' =>  Carbon::parse($request['fecha_de_inicio'])->addDays($increment_dia),
-                            'fecha_vencimiento' => "2022-04-26",
+                            'year_inicio' => Carbon::parse($request['fecha_de_inicio'])->format('Y'),
                             'status' => 0
                         ]);
                     }
@@ -130,7 +130,7 @@ class PrestamoController extends Controller
                             'id_prestamo' => $prestamo->id,
                             'title' => "Cuota pendiente",
                             'start' =>  Carbon::parse($request['fecha_de_inicio'])->addWeeks($increment_semana),
-                            'fecha_vencimiento' => "2022-04-26",
+                            'year_inicio' => Carbon::parse($request['fecha_de_inicio'])->format('Y'),
                             'status' => 0
                         ]);
                     }
@@ -145,7 +145,7 @@ class PrestamoController extends Controller
                             'id_prestamo' => $prestamo->id,
                             'title' => "Cuota pendiente",
                             'start' =>  Carbon::parse($request['fecha_de_inicio'])->addMonths($increment_mensual),
-                            'fecha_vencimiento' => "2022-04-26",
+                            'year_inicio' => Carbon::parse($request['fecha_de_inicio'])->format('Y'),
                             'status' => 0
                         ]);
                     }

@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cuotas', function (Blueprint $table) {
+        Schema::create('fecha_inicio_app', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_prestamo')->references('id')->on('prestamos')->comment('El id del prestamo que le pertenece cierta deuda');
-            $table->string('title');
-            $table->date('start');
-            $table->integer('year_inicio');
-            $table->boolean('status');
-            $table->timestamps();
+            $table->date('fecha_inicio_app')->comment('La fecha que inicio la aplicacion web o mas bien cuando sea ejecuto el seeder del mismo, esta fecha sirve para obtener los años de las estadistica.');
         });
     }
 
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cuotas');
+        Schema::dropIfExists('fecha_inicio_app');
     }
 };

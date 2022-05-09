@@ -5404,6 +5404,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue_google_charts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-google-charts */ "./node_modules/vue-google-charts/index.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5420,10 +5439,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["urlEstadisticas"],
   data: function data() {
     return {
+      fecha_inicio_app: null,
+      dif_fecha_incio_app_fecha_presente: null,
+      fecha_actual: moment__WEBPACK_IMPORTED_MODULE_1___default()().format("yyyy"),
       // Array will be automatically processed with visualization.arrayToDataTable function
       chartData: [],
       chartOptions: {
@@ -5434,15 +5457,28 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  methods: {
+    obtener_estadistica: function obtener_estadistica(year) {
+      var _this = this;
+
+      axios.get(this.urlEstadisticas, {
+        params: {
+          year: year
+        }
+      }).then(function (response) {
+        _this.chartData.push(["Titulo", "Prestado", "Cobrado", "Pendiente", "Ganancia"], response.data.estadistica);
+
+        _this.fecha_inicio_app = moment__WEBPACK_IMPORTED_MODULE_1___default()(response.data.fecha_inicio_app).format("YYYY");
+        _this.dif_fecha_incio_app_fecha_presente = moment__WEBPACK_IMPORTED_MODULE_1___default()(moment__WEBPACK_IMPORTED_MODULE_1___default()().format("yyyy-MM-DD")).diff(moment__WEBPACK_IMPORTED_MODULE_1___default()(response.data.fecha_inicio_app), "years");
+      });
+    },
+    filtrar_estadistica: function filtrar_estadistica(event) {
+      this.chartData = [];
+      this.obtener_estadistica(event.target.value);
+    }
+  },
   mounted: function mounted() {
-    var _this = this;
-
-    axios.get(this.urlEstadisticas).then(function (response) {
-      console.log(response.data);
-
-      _this.chartData.push(["Titulo", "Prestado", "Cobrado", "Pendiente", "Ganancia"], response.data);
-    });
-    console.log("Component mounted.");
+    this.obtener_estadistica(moment__WEBPACK_IMPORTED_MODULE_1___default()().format("yyyy"));
   }
 });
 
@@ -81715,7 +81751,59 @@ var render = function () {
     ? _c(
         "div",
         [
-          _vm._m(0),
+          _vm.fecha_inicio_app
+            ? _c(
+                "select",
+                {
+                  staticClass: "select-filter-charts",
+                  on: {
+                    change: function ($event) {
+                      return _vm.filtrar_estadistica($event)
+                    },
+                  },
+                },
+                [
+                  _c("option", { attrs: { value: "", disabled: "" } }, [
+                    _vm._v("Selecciona un año"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "option",
+                    { domProps: { value: parseInt(_vm.fecha_inicio_app) } },
+                    [
+                      _vm._v(
+                        "\n      Estadística del año " +
+                          _vm._s(parseInt(_vm.fecha_inicio_app)) +
+                          "\n    "
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.dif_fecha_incio_app_fecha_presente, function (i) {
+                    return _c(
+                      "option",
+                      {
+                        key: i,
+                        domProps: {
+                          value: parseInt(_vm.fecha_inicio_app) + i,
+                          selected:
+                            _vm.fecha_actual ==
+                            parseInt(_vm.fecha_inicio_app) + i,
+                        },
+                      },
+                      [
+                        _vm._v(
+                          "\n      Estadística del año " +
+                            _vm._s(parseInt(_vm.fecha_inicio_app) + i) +
+                            "\n    "
+                        ),
+                      ]
+                    )
+                  }),
+                ],
+                2
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c("GChart", {
             staticClass: "charts-vue",
@@ -81730,22 +81818,7 @@ var render = function () {
       )
     : _vm._e()
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      { staticClass: "select-filter-charts", attrs: { name: "", id: "" } },
-      [
-        _c("option", { attrs: { value: "" } }, [_vm._v("Seleciona un año")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Año 2022")]),
-      ]
-    )
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

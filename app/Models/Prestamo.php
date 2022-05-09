@@ -19,7 +19,8 @@ class Prestamo extends Model
         'total_a_pagar',
         'interes_generado',
         'fecha_de_inicio',
-        'status'
+        'status',
+        'year_inicio'
     ];
 
     // obtener el cliente del prestamo

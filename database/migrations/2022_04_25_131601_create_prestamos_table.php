@@ -36,6 +36,7 @@ return new class extends Migration
             $table->double('importe_de_cuota', 16, 2);
             $table->double('total_a_pagar', 16, 2);
             $table->double('interes_generado', 16, 2);
+            $table->integer('year_inicio');
             $table->date('fecha_de_inicio');
             $table->boolean('status');
             $table->timestamps();

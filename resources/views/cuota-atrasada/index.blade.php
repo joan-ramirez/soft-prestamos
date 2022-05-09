@@ -29,10 +29,9 @@
             {{ $cuotas->links() }}
         @else
             <div class="sin-resultado" style="margin-top: 125px; margin-bottom:125px;">
-                No hay cuotas atrasadas
+                No hay cuotas atrasadas.
             </div>
         @endif
-
 
     </section>
 @endsection

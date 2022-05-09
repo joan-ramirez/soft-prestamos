@@ -13,8 +13,8 @@ class Cuota extends Model
         'id_prestamo',
         'title',
         'start',
-        'fecha_vencimiento',
-        'status'
+        'status',
+        'year_inicio',
     ];
 
     // Obtener el prestamo de la deuda

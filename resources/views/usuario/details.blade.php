@@ -10,7 +10,6 @@
 
     <section class="view contenedor_size">
 
-
         <div class="detalles_cliente">
             <div class="detalle">
                 <strong>Nombre completo:</strong>
@@ -22,25 +21,20 @@
                 {{ $user->email }}
             </div>
 
-
             <div class="detalle">
 
                 <strong>Roles:</strong>
                 <br>
                 @foreach ($user->roles as $rol)
-                <div style="font-size: 13px">
-                    <span style="font-weight: 600">{{ $rol->rols->nombre }}</span>
-                    <li>{{ $rol->rols->descripcion }}</li>
-                </div>
-                   
+                    <div style="font-size: 13px;">
+                        <span style="font-weight: 600;">{{ $rol->rols->nombre }}</span>
+                        <li>{{ $rol->rols->descripcion }}</li>
+                    </div>
                 @endforeach
 
             </div>
 
-
         </div>
-
-
 
     </section>
 @endsection

@@ -34,7 +34,7 @@
                 <strong>Fecha de pago:</strong> {{ $cuota->start }} - Monto cuota:
                 ${{ $prestamo->importe_de_cuota }} 
                 @if ($cuota->status)
-                - Pagodo
+                - Pagado
                 @else
                 - Sin pagar
                 @endif
